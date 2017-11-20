@@ -1,0 +1,113 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: indikator.sellproducts::lang.form.name
+        required: true
+        span: auto
+
+    slug:
+        label: indikator.sellproducts::lang.form.slug
+        required: true
+        preset: name
+        span: auto
+
+    price:
+        label: indikator.sellproducts::lang.form.price
+        required: true
+        span: auto
+
+    category:
+        label: indikator.sellproducts::lang.form.category
+        required: true
+        type: dropdown
+        span: auto
+
+tabs:
+    fields:
+
+        summary:
+            tab: indikator.sellproducts::lang.form.summary
+            type: richeditor
+            size: large
+
+        content:
+            tab: indikator.sellproducts::lang.form.content
+            type: richeditor
+            size: giant
+
+secondaryTabs:
+    fields:
+
+        image:
+            label: indikator.sellproducts::lang.form.image
+            type: mediafinder
+            mode: image
+
+        is_old:
+            label: indikator.sellproducts::lang.form.is_old
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.yes
+                0: indikator.sellproducts::lang.form.no
+            default: 0
+            span: auto
+
+        is_sale:
+            label: indikator.sellproducts::lang.form.is_sale
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.yes
+                0: indikator.sellproducts::lang.form.no
+            default: 0
+            span: auto
+
+        sale_price:
+            label: indikator.sellproducts::lang.form.sale_price
+            trigger:
+                action: show
+                field: is_sale
+                condition: value[1]
+
+        sale_start:
+            label: indikator.sellproducts::lang.form.sale_start
+            type: datepicker
+            trigger:
+                action: show
+                field: is_sale
+                condition: value[1]
+            mode: datetime
+
+        sale_end:
+            label: indikator.sellproducts::lang.form.sale_end
+            type: datepicker
+            trigger:
+                action: show
+                field: is_sale
+                condition: value[1]
+            mode: datetime
+
+        status:
+            label: indikator.sellproducts::lang.form.status
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.status_active
+                2: indikator.sellproducts::lang.form.status_inactive
+            default: 1
+            span: auto
+
+        featured:
+            label: indikator.sellproducts::lang.form.featured
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.yes
+                0: indikator.sellproducts::lang.form.no
+            default: 0
+            span: auto

@@ -1,0 +1,17 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: indikator.sellproducts::lang.title.orders
+form: ~/plugins/indikator/sellproducts/models/orders/fields.yaml
+
+modelClass: Indikator\SellProducts\Models\Orders
+defaultRedirect: indikator/sellproducts/orders
+
+create:
+    redirect: indikator/sellproducts/orders/update/:id
+    redirectClose: indikator/sellproducts/orders
+
+update:
+    redirect: indikator/sellproducts/orders/update/:id
+    redirectClose: indikator/sellproducts/orders

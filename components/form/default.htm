@@ -1,0 +1,107 @@
+{% if warning %}
+<p>{{ products }}</p>
+{% else %}
+<div class="row" id="sellproducts">
+    <form data-request="onSellProducts" data-request-redirect="" id="sellproducts_form">
+        <div class="col-md-12">
+            <strong>{{ form.personal }}</strong>
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="first_name" placeholder="{{ form.first_name }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="last_name" placeholder="{{ form.last_name }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="email" placeholder="{{ form.email }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="phone" placeholder="{{ form.phone }}" class="form-control">
+        </div>
+        {% if billing %}
+        <div class="form-group col-md-6">
+            <input type="text" name="name" placeholder="{{ form.name }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="city" placeholder="{{ form.city }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="zipcode" placeholder="{{ form.zipcode }}" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" name="address" placeholder="{{ form.address }}" class="form-control">
+        </div>
+        {% endif %}
+        <div class="col-md-12">
+            {% if comment %}
+            <textarea name="comment" placeholder="{{ form.comment }}" class="form-control"></textarea><br>
+            {% endif %}
+            <strong>{{ form.items }}</strong>
+        </div>
+        {% for product in products %}
+        <div class="col-md-5">
+            {{ product.name }}
+            <input type="hidden" name="product[]" value="{{ product.id }}">
+        </div>
+        <div class="col-md-4">
+            {{ product.price }} {{ category.currency }}
+            &nbsp;x&nbsp;
+            <input type="number" name="quantity[]" value="0" min="0" max="99" class="product_quantity" data-product="{{ product.id }}" data-price="{{ product.price }}" style="width:35px"> {{ category.unit }}
+        </div>
+        <div class="col-md-3 text-right">
+            <strong><span id="subtotal_{{ product.id }}">0</span> {{ category.currency }}</strong>
+        </div>
+        <div class="clearfix"></div>
+        {% endfor %}
+        {% if total %}
+        <div class="col-md-5">
+            <strong>{{ form.total }}:</strong>
+        </div>
+        <div class="col-md-4">
+            <strong><span id="sellproducts_quantity">0</span> {{ category.unit }}</strong>
+        </div>
+        <div class="col-md-3">
+            <strong><span id="sellproducts_total">0</span> {{ category.currency }}</strong>
+        </div>
+        <div class="clearfix"></div>
+        {% endif %}
+        <br>
+        <div class="form-group col-md-12">
+            {% if payment %}
+            <strong>{{ form.payment }}</strong><br>
+            {{ payment|raw }}<br>
+            {% endif %}
+            <input type="submit" value="{{ form.submit }}">
+            {% if barion %}
+            <br><br><img src="{{ '/'|app }}/plugins/indikator/sellproducts/assets/img/barion-card-payment.png" alt="Barion">
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    $('.product_quantity').change(function() {
+        var quantity = 0;
+        var total = 0;
+
+        $('.product_quantity').each(function() {
+            var gty = parseInt($(this).val());
+            var tot = parseInt($(this).attr('data-price')) * gty;
+
+            $('#subtotal_' + $(this).attr('data-product')).html(tot);
+
+            quantity += gty;
+            total += tot;
+        });
+
+        $('#sellproducts_quantity').html(quantity);
+        $('#sellproducts_total').html(total);
+    });
+
+    $('.sellproducts_payment').click(function() {
+        $('#sellproducts_form').attr('data-request-redirect', $(this).attr('data-redirect'));
+    });
+});
+</script>
+{% endif %}

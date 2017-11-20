@@ -1,0 +1,47 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: indikator.sellproducts::lang.form.id
+        invisible: true
+
+    name:
+        label: indikator.sellproducts::lang.form.name
+        searchable: true
+
+    slug:
+        label: indikator.sellproducts::lang.form.slug
+        searchable: true
+        invisible: true
+
+    currency:
+        label: indikator.sellproducts::lang.form.currency
+        searchable: true
+
+    unit:
+        label: indikator.sellproducts::lang.form.unit
+        searchable: true
+
+    summary:
+        label: indikator.sellproducts::lang.form.summary
+        searchable: true
+        invisible: true
+
+    status:
+        label: indikator.sellproducts::lang.form.status
+        sortable: false
+        type: sellproducts_status
+
+    created_at:
+        label: indikator.sellproducts::lang.list.created_at
+        searchable: true
+        invisible: true
+        type: datetime
+
+    updated_at:
+        label: indikator.sellproducts::lang.list.updated_at
+        searchable: true
+        type: datetime

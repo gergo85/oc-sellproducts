@@ -1,0 +1,32 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+        <li>
+            <span class="text-info"><strong><?= $count ?></strong> <?= e(trans_choice('indikator.sellproducts::lang.list.orders', $count)) ?></span>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="report-widget">
+            <div class="scoreboard">
+                <div data-control="toolbar">
+                    <h3><?= e(trans('indikator.sellproducts::lang.menu.orders')) ?></h3>
+                    <div
+                        data-control="chart-line"
+                        data-time-mode="weeks"
+                        class="height-200"
+                        data-chart-options="xaxis: {mode: 'time'}">
+                        <span 
+                            data-chart="dataset" 
+                            data-set-color="#34495e"
+                            data-set-data="<?= $sales ?>"
+                            data-set-name="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    status_pending:
+        label: indikator.sellproducts::lang.form.status_pending
+        type: checkbox
+        conditions: status = 3
+
+    status_paid:
+        label: indikator.sellproducts::lang.form.status_paid
+        type: checkbox
+        conditions: status = 4
+
+    status_closed:
+        label: indikator.sellproducts::lang.form.status_closed
+        type: checkbox
+        conditions: status = 5
+
+    created_date:
+        label: indikator.sellproducts::lang.list.created_at
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+
+    updated_date:
+        label: indikator.sellproducts::lang.list.updated_at
+        type: daterange
+        conditions: updated_at >= ':after' AND updated_at <= ':before'

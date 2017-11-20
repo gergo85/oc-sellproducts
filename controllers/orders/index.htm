@@ -1,0 +1,14 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+        <li>
+            <span class="text-warning"><strong><?= Indikator\SellProducts\Models\Orders::where('status', 3)->count() ?></strong> <?= e(trans('indikator.sellproducts::lang.form.status_pending')) ?></span>
+            &nbsp; | &nbsp;
+            <span class="text-info"><strong><?= Indikator\SellProducts\Models\Orders::where('status', 4)->count() ?></strong> <?= e(trans('indikator.sellproducts::lang.form.status_paid')) ?></span>
+            &nbsp; | &nbsp;
+            <span class="text-success"><strong><?= Indikator\SellProducts\Models\Orders::where('status', 5)->count() ?></strong> <?= e(trans('indikator.sellproducts::lang.form.status_closed')) ?></span> 
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?= $this->listRender() ?>

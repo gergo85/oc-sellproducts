@@ -1,0 +1,3 @@
+<?php
+
+echo $record->price.' '.Indikator\SellProducts\Models\Category::where('id', $record->category)->pluck('currency');

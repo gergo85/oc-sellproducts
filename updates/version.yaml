@@ -1,0 +1,10 @@
+1.0.0:
+    - First version of Sell Products plugin.
+    - create_products_table.php
+    - create_orders_table.php
+1.0.1:
+    - Added category feature to products.
+    - create_category_table.php
+    - update_timestamp_nullable.php
+1.0.2: Improved the front-end component.
+1.0.3: Added navigation links to the forms.

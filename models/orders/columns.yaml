@@ -1,0 +1,30 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: indikator.sellproducts::lang.form.id
+
+    payment:
+        label: indikator.sellproducts::lang.form.payment
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/orders/_payment.htm
+
+    status:
+        label: indikator.sellproducts::lang.form.status
+        sortable: false
+        type: sellproducts_status
+
+    created_at:
+        label: indikator.sellproducts::lang.list.created_at
+        searchable: true
+        invisible: true
+        type: datetime
+
+    updated_at:
+        label: indikator.sellproducts::lang.list.updated_at
+        searchable: true
+        type: datetime

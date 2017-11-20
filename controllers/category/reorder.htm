@@ -1,0 +1,10 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('indikator/sellproducts/category') ?>"><?= e(trans('indikator.sellproducts::lang.menu.category')) ?></a></li>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<div style="margin-left:20px;">
+    <?= $this->reorderRender() ?>
+</div>

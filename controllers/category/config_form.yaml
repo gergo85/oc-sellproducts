@@ -1,0 +1,17 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: indikator.sellproducts::lang.title.products
+form: ~/plugins/indikator/sellproducts/models/category/fields.yaml
+
+modelClass: Indikator\SellProducts\Models\Category
+defaultRedirect: indikator/sellproducts/category
+
+create:
+    redirect: indikator/sellproducts/category/update/:id
+    redirectClose: indikator/sellproducts/category
+
+update:
+    redirect: indikator/sellproducts/category/update/:id
+    redirectClose: indikator/sellproducts/category

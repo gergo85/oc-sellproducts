@@ -1,0 +1,15 @@
+.row {
+    margin-bottom: 30px;
+}
+
+.row .report-widget {
+    box-shadow:         3px 3px 11px 0 rgba(217, 217, 217, 1);
+    -moz-box-shadow:    3px 3px 11px 0 rgba(217, 217, 217, 1);
+    -webkit-box-shadow: 3px 3px 11px 0 rgba(217, 217, 217, 1);
+}
+
+.row .report-widget h3 {
+    border-bottom: 1px solid #cae1e2;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,86 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: indikator.sellproducts::lang.form.name
+        required: true
+        span: auto
+
+    slug:
+        label: indikator.sellproducts::lang.form.slug
+        required: true
+        preset: name
+        span: auto
+
+tabs:
+    fields:
+
+        summary:
+            tab: indikator.sellproducts::lang.form.summary
+            type: richeditor
+            size: large
+
+        content:
+            tab: indikator.sellproducts::lang.form.content
+            type: richeditor
+            size: giant
+
+        payment:
+            tab: indikator.sellproducts::lang.form.payment
+            prompt: indikator.sellproducts::lang.form.new_payment
+            type: repeater
+            form:
+                fields:
+                    payment_type:
+                        label: indikator.sellproducts::lang.form.payment_type
+                        type: dropdown
+                        options:
+                            'barion': indikator.sellproducts::lang.settings.barion_label
+                            'transfer': indikator.sellproducts::lang.settings.transfer_label
+                            'cash': indikator.sellproducts::lang.settings.cash_label
+                        span: left
+                    payment_text:
+                        label: indikator.sellproducts::lang.form.payment_text
+                        span: right
+            span: full
+
+secondaryTabs:
+    fields:
+
+        image:
+            label: indikator.sellproducts::lang.form.image
+            type: mediafinder
+            mode: image
+
+        currency:
+            label: indikator.sellproducts::lang.form.currency
+            placeholder: indikator.sellproducts::lang.form.currency_default
+            required: true
+
+        unit:
+            label: indikator.sellproducts::lang.form.unit
+            placeholder: indikator.sellproducts::lang.form.unit_default
+            required: true
+
+        status:
+            label: indikator.sellproducts::lang.form.status
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.status_active
+                2: indikator.sellproducts::lang.form.status_inactive
+            default: 1
+            span: auto
+
+        featured:
+            label: indikator.sellproducts::lang.form.featured
+            required: true
+            type: radio
+            options:
+                1: indikator.sellproducts::lang.form.yes
+                0: indikator.sellproducts::lang.form.no
+            default: 0
+            span: auto

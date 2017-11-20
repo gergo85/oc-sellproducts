@@ -1,0 +1,108 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        barion_enable:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.enable
+            type: switch
+            span: full
+
+        barion_name:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.name
+            placeholder: indikator.sellproducts::lang.settings.barion_value
+            span: auto
+
+        barion_mode:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_mode
+            type: dropdown
+            options:
+                'test': indikator.sellproducts::lang.settings.barion_mode_test
+                'prod': indikator.sellproducts::lang.settings.barion_mode_prod
+            span: auto
+
+        barion_email:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_email
+            span: auto
+
+        barion_key:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_key
+            span: auto
+
+        barion_currency:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_currency
+            type: dropdown
+            options:
+                'HUF': HUF
+                'EUR': EUR
+                'USD': USD
+            span: auto
+
+        barion_locale:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_locale
+            type: dropdown
+            options:
+                'hu-HU': hu-HU
+                'en-US': en-US
+                'de-DE': de-DE
+                'sl-SL': sl-SL
+                'sk-SK': sk-SK
+                'fr-FR': fr-FR
+            span: auto
+
+        barion_redirect:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_redirect
+            placeholder: http://webshop.example.com/afterpayment
+            span: auto
+
+        barion_callback:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_callback
+            placeholder: http://webshop.example.com/processpayment
+            span: auto
+
+        transfer_enable:
+            tab: indikator.sellproducts::lang.settings.transfer_label
+            label: indikator.sellproducts::lang.settings.enable
+            type: switch
+            span: full
+
+        transfer_name:
+            tab: indikator.sellproducts::lang.settings.transfer_label
+            label: indikator.sellproducts::lang.settings.name
+            placeholder: indikator.sellproducts::lang.settings.transfer_value
+            span: auto
+
+        transfer_redirect:
+            tab: indikator.sellproducts::lang.settings.transfer_label
+            label: indikator.sellproducts::lang.settings.redirect
+            type: dropdown
+            span: auto
+
+        cash_enable:
+            tab: indikator.sellproducts::lang.settings.cash_label
+            label: indikator.sellproducts::lang.settings.enable
+            type: switch
+            span: full
+
+        cash_name:
+            tab: indikator.sellproducts::lang.settings.cash_label
+            label: indikator.sellproducts::lang.settings.name
+            placeholder: indikator.sellproducts::lang.settings.cash_value
+            span: auto
+
+        cash_redirect:
+            tab: indikator.sellproducts::lang.settings.cash_label
+            label: indikator.sellproducts::lang.settings.redirect
+            type: dropdown
+            span: auto

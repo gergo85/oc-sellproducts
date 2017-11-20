@@ -1,0 +1,26 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+        <li>
+            <span class="text-info"><strong><?= Indikator\SellProducts\Models\Products::where('status', 1)->count() ?></strong> <?= e(trans('indikator.sellproducts::lang.form.status_active')) ?></span>
+            &nbsp; | &nbsp;
+            <span class="text-danger"><strong><?= Indikator\SellProducts\Models\Products::where('status', 2)->count() ?></strong> <?= e(trans('indikator.sellproducts::lang.form.status_inactive')) ?></span>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (Indikator\SellProducts\Models\Category::count() > 0): ?>
+	<?= $this->listRender() ?>
+<?php else :?>
+<div class="row" style="padding:0 20px">
+    <div class="col-md-12">
+        <div class="callout callout-warning">
+            <div class="header">
+                <i class="icon-arrow-circle-right"></i> 
+                <h3><?= e(trans('indikator.sellproducts::lang.list.error_title')) ?></h3>
+                <p><?= e(trans('indikator.sellproducts::lang.list.error_desc')) ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

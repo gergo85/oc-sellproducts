@@ -1,0 +1,25 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+title: indikator.sellproducts::lang.menu.orders
+list: ~/plugins/indikator/sellproducts/models/orders/columns.yaml
+
+modelClass: Indikator\SellProducts\Models\Orders
+recordUrl: indikator/sellproducts/orders/update/:id
+noRecordsMessage: backend::lang.list.no_records
+
+recordsPerPage: 15
+showCheckboxes: true
+showSetup: true
+
+defaultSort:
+    column: id
+    direction: desc
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: backend::lang.list.search_prompt
+
+filter: config_filter.yaml

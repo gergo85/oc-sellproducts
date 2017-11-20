@@ -13,7 +13,7 @@ class Plugin extends PluginBase
             'description' => 'indikator.sellproducts::lang.plugin.description',
             'author'      => 'indikator.sellproducts::lang.plugin.author',
             'icon'        => 'icon-shopping-bag',
-            'homepage'    => 'http://www.indikator.hu'
+            'homepage'    => 'https://github.com/gergo85/oc-sellproducts'
         ];
     }
 

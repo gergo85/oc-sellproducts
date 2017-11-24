@@ -21,7 +21,7 @@ class Products extends Model
     {
         $result = [];
 
-        foreach (Category::orderBy('name', 'asc')->get() as $item) {
+        foreach (Category::orderBy('name', 'asc')->get()->all() as $item) {
             $result[$item->id] = $item->name;
         }
 

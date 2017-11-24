@@ -59,7 +59,7 @@ class Form extends ComponentBase
     {
         $result = [];
 
-        foreach (Category::orderBy('name', 'asc')->get() as $item) {
+        foreach (Category::orderBy('name', 'asc')->get()->all() as $item) {
             $result[$item->id] = $item->name;
         }
 
@@ -77,7 +77,7 @@ class Form extends ComponentBase
         // List products
         else {
             $this->page['warning']  = false;
-            $this->page['products'] = Products::where(['category' => $this->property('category'), 'status' => 1])->get();
+            $this->page['products'] = Products::where(['category' => $this->property('category'), 'status' => 1])->get()->all();
 
             $category = Category::where('id', $this->property('category'))->first();
             $payment = '';

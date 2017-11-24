@@ -24,8 +24,8 @@ class Orders extends Model
     {
         $result = [];
 
-        foreach (Products::orderBy('name', 'asc')->get() as $item) {
-            $currency = Category::where('id', $item->category)->pluck('currency');
+        foreach (Products::orderBy('name', 'asc')->get()->all() as $item) {
+            $currency = Category::where('id', $item->category)->value('currency');
             $result[$item->id] = $item->name.'  &nbsp;|&nbsp; '.$item->price.' '.$currency;
         }
 

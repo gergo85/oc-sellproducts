@@ -89,23 +89,33 @@ class Plugin extends PluginBase
         return [
             'indikator.sellproducts.orders' => [
                 'tab'   => 'indikator.sellproducts::lang.plugin.name',
-                'label' => 'indikator.sellproducts::lang.permission.orders'
+                'label' => 'indikator.sellproducts::lang.permission.orders',
+                'order' => 100,
+                'roles' => ['publisher']
             ],
             'indikator.sellproducts.reports' => [
                 'tab'   => 'indikator.sellproducts::lang.plugin.name',
-                'label' => 'indikator.sellproducts::lang.permission.reports'
+                'label' => 'indikator.sellproducts::lang.permission.reports',
+                'order' => 200,
+                'roles' => ['publisher']
             ],
             'indikator.sellproducts.products' => [
                 'tab'   => 'indikator.sellproducts::lang.plugin.name',
-                'label' => 'indikator.sellproducts::lang.permission.products'
+                'label' => 'indikator.sellproducts::lang.permission.products',
+                'order' => 300,
+                'roles' => ['publisher']
             ],
             'indikator.sellproducts.category' => [
                 'tab'   => 'indikator.sellproducts::lang.plugin.name',
-                'label' => 'indikator.sellproducts::lang.permission.category'
+                'label' => 'indikator.sellproducts::lang.permission.category',
+                'order' => 400,
+                'roles' => ['publisher']
             ],
             'indikator.sellproducts.settings' => [
                 'tab'   => 'indikator.sellproducts::lang.plugin.name',
-                'label' => 'indikator.sellproducts::lang.permission.settings'
+                'label' => 'indikator.sellproducts::lang.permission.settings',
+                'order' => 500,
+                'roles' => ['publisher']
             ]
         ];
     }

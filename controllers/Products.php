@@ -38,7 +38,7 @@ class Products extends Controller
                 $item->update(['status' => 1]);
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.activate'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.activate'));
         }
 
         return $this->listRefresh();
@@ -55,24 +55,7 @@ class Products extends Controller
                 $item->update(['status' => 2]);
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.deactivate'));
-        }
-
-        return $this->listRefresh();
-    }
-
-    public function onRemove()
-    {
-        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
-            foreach ($checkedIds as $itemId) {
-                if (!$item = Item::whereId($itemId)) {
-                    continue;
-                }
-
-                $item->delete();
-            }
-
-            Flash::success(Lang::get('indikator.popup::lang.flash.remove'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.deactivate'));
         }
 
         return $this->listRefresh();

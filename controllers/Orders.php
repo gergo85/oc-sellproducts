@@ -89,7 +89,7 @@ class Orders extends Controller
                 $item->delete();
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.remove'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.remove'));
         }
 
         return $this->listRefresh();

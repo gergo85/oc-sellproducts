@@ -41,7 +41,7 @@ class Category extends Controller
                 $item->update(['status' => 1]);
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.activate'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.activate'));
         }
 
         return $this->listRefresh();
@@ -58,7 +58,7 @@ class Category extends Controller
                 $item->update(['status' => 2]);
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.deactivate'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.deactivate'));
         }
 
         return $this->listRefresh();
@@ -72,12 +72,12 @@ class Category extends Controller
                     continue;
                 }
 
-                if (Products::where('category', $itemId) == 0) {
-                    $item->delete();
-                }
+                $item->delete();
+
+                Products::where('category', $itemId)->update(['category' => 0]);
             }
 
-            Flash::success(Lang::get('indikator.popup::lang.flash.remove'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.remove'));
         }
 
         return $this->listRefresh();

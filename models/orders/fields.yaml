@@ -9,6 +9,8 @@ tabs:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.first_name
             required: true
+            attributes:
+               autofocus: ''
             span: auto
 
         last_name:

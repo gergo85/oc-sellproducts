@@ -60,4 +60,21 @@ class Products extends Controller
 
         return $this->listRefresh();
     }
+
+    public function onRemove()
+    {
+        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
+            foreach ($checkedIds as $itemId) {
+                if (!$item = Item::whereId($itemId) || $item->value('orders') > 0) {
+                    continue;
+                }
+
+                $item->delete();
+            }
+
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.remove'));
+        }
+
+        return $this->listRefresh();
+    }
 }

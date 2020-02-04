@@ -36,6 +36,19 @@ tabs:
             label: indikator.sellproducts::lang.settings.barion_key
             span: auto
 
+        barion_pixel:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_pixel
+            span: auto
+
+        barion_type:
+            tab: indikator.sellproducts::lang.settings.barion_label
+            label: indikator.sellproducts::lang.settings.barion_type
+            type: dropdown
+            options:
+                'Immediate': indikator.sellproducts::lang.settings.barion_type_immediate
+            span: auto
+
         barion_currency:
             tab: indikator.sellproducts::lang.settings.barion_label
             label: indikator.sellproducts::lang.settings.barion_currency
@@ -44,6 +57,7 @@ tabs:
                 'HUF': HUF
                 'EUR': EUR
                 'USD': USD
+                'CZK': CZK
             span: auto
 
         barion_locale:
@@ -57,18 +71,20 @@ tabs:
                 'sl-SL': sl-SL
                 'sk-SK': sk-SK
                 'fr-FR': fr-FR
+                'cs-CZ': cs-CZ
+                'el-GR': el-GR
             span: auto
 
         barion_redirect:
             tab: indikator.sellproducts::lang.settings.barion_label
             label: indikator.sellproducts::lang.settings.barion_redirect
-            placeholder: http://webshop.example.com/afterpayment
+            type: dropdown
             span: auto
 
         barion_callback:
             tab: indikator.sellproducts::lang.settings.barion_label
             label: indikator.sellproducts::lang.settings.barion_callback
-            placeholder: http://webshop.example.com/processpayment
+            type: dropdown
             span: auto
 
         transfer_enable:

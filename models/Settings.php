@@ -18,6 +18,11 @@ class Settings extends Model
         return $this->redirectOptions();
     }
 
+    public function getBarionCallbackOptions()
+    {
+        return $this->redirectOptions();
+    }
+
     public function getTransferRedirectOptions()
     {
         return $this->redirectOptions();

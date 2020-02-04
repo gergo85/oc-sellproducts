@@ -68,13 +68,11 @@ class Category extends Controller
     {
         if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
             foreach ($checkedIds as $itemId) {
-                if (!$item = Item::whereId($itemId)) {
+                if (!$item = Item::whereId($itemId) || Products::where('category', $itemId)->count() > 0) {
                     continue;
                 }
 
                 $item->delete();
-
-                Products::where('category', $itemId)->update(['category' => 0]);
             }
 
             Flash::success(Lang::get('indikator.sellproducts::lang.flash.remove'));

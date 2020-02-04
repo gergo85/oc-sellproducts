@@ -28,25 +28,55 @@ tabs:
         phone:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.phone
-            required: true
             span: auto
 
-        name:
+        billing_title:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.billing
+            type: section
+
+
+        billing_name:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.name
             span: auto
 
-        city:
-            tab: indikator.sellproducts::lang.form.customer
-            label: indikator.sellproducts::lang.form.city
-            span: auto
-
-        zipcode:
+        billing_zipcode:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.zipcode
             span: auto
 
-        address:
+        billing_city:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.city
+            span: auto
+
+        billing_address:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.address
+            span: auto
+
+        shipping_title:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.shipping
+            type: section
+
+        shipping_name:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.name
+            span: auto
+
+        shipping_zipcode:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.zipcode
+            span: auto
+
+        shipping_city:
+            tab: indikator.sellproducts::lang.form.customer
+            label: indikator.sellproducts::lang.form.city
+            span: auto
+
+        shipping_address:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.address
             span: auto
@@ -60,11 +90,18 @@ tabs:
                     product:
                         label: indikator.sellproducts::lang.form.product
                         type: dropdown
-                        span: left
+                        span: storm
+                        cssClass: col-sm-6
+                    price:
+                        label: indikator.sellproducts::lang.form.price
+                        type: number
+                        span: storm
+                        cssClass: col-sm-3
                     quantity:
                         label: indikator.sellproducts::lang.form.quantity
                         type: number
-                        span: right
+                        span: storm
+                        cssClass: col-sm-3
             span: full
 
 secondaryTabs:

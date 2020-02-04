@@ -12,7 +12,6 @@ class Orders extends Model
         'first_name' => 'required',
         'last_name'  => 'required',
         'email'      => 'required',
-        'phone'      => 'required',
         'status'     => 'required|between:1,3|numeric'
     ];
 
@@ -25,8 +24,7 @@ class Orders extends Model
         $result = [];
 
         foreach (Products::orderBy('name', 'asc')->get()->all() as $item) {
-            $currency = Category::where('id', $item->category)->value('currency');
-            $result[$item->id] = $item->name.'  &nbsp;|&nbsp; '.$item->price.' '.$currency;
+            $result[$item->id] = $item->name;
         }
 
         return $result;

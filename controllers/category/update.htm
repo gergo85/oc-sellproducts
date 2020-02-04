@@ -2,8 +2,10 @@
 
 $uri = explode('/', Request::path());
 
-$previous = \Indikator\SellProducts\Models\Category::where('id', '<', $uri[5])->max('id');
-$next     = \Indikator\SellProducts\Models\Category::where('id', '>', $uri[5])->min('id');
+$delete = (\Indikator\SellProducts\Models\Products::where('category', $uri[5])->count() > 0) ? false : true;
+
+$prev = \Indikator\SellProducts\Models\Category::where('id', '<', $uri[5])->max('id');
+$next = \Indikator\SellProducts\Models\Category::where('id', '>', $uri[5])->min('id');
 
 ?>
 
@@ -48,20 +50,28 @@ $next     = \Indikator\SellProducts\Models\Category::where('id', '>', $uri[5])->
                 <span class="btn-text">
                     <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('indikator/sellproducts/category') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
                 </span>
+                <?php if ($delete): ?>
+                <button
+                    data-request="onDelete"
+                    data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"
+                    data-request-confirm="<?= e(trans('indikator.sellproducts::lang.flash.delete')) ?>"
+                    class="oc-icon-trash-o btn-icon danger pull-right">
+                </button>
+                <?php endif ?>
                 <?php if ($next): ?>
                 <a
                     href="<?= $next; ?>"
                     class="oc-icon-angle-right btn-icon pull-right"
                     style="font-size: 24px; text-decoration:none"
-                    title="<?= e(trans('indikator.content::lang.button.next')) ?>">
+                    title="<?= e(trans('indikator.sellproducts::lang.button.next')) ?>">
                 </a>
                 <?php endif ?>
-                <?php if ($previous): ?>
+                <?php if ($prev): ?>
                 <a
-                    href="<?= $previous; ?>"
+                    href="<?= $prev; ?>"
                     class="oc-icon-angle-left btn-icon pull-right"
                     style="font-size: 24px; text-decoration:none"
-                    title="<?= e(trans('indikator.content::lang.button.previous')) ?>">
+                    title="<?= e(trans('indikator.sellproducts::lang.button.previous')) ?>">
                 </a>
                 <?php endif ?>
             </div>

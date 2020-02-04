@@ -21,9 +21,10 @@ columns:
         label: indikator.sellproducts::lang.form.currency
         searchable: true
 
-    unit:
-        label: indikator.sellproducts::lang.form.unit
+    locale:
+        label: indikator.sellproducts::lang.form.locale
         searchable: true
+        invisible: true
 
     summary:
         label: indikator.sellproducts::lang.form.summary

@@ -49,6 +49,14 @@ secondaryTabs:
             type: mediafinder
             mode: image
 
+        unit:
+            label: indikator.sellproducts::lang.form.unit
+            required: true
+            type: radio
+            options:
+                piece: indikator.sellproducts::lang.form.unit_piece
+            default: piece
+
         is_old:
             label: indikator.sellproducts::lang.form.is_old
             required: true

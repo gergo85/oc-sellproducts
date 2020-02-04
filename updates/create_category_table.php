@@ -16,9 +16,9 @@ class CreateCategoryTable extends Migration
             $table->text('summary')->nullable();
             $table->longtext('content')->nullable();
             $table->text('payment')->nullable();
-            $table->string('image', 200)->nullable();
-            $table->string('currency', 20)->default('USD');
-            $table->string('unit', 20)->default('piece');
+            $table->string('image', 191)->nullable();
+            $table->string('locale', 5)->default('hu-HU');
+            $table->string('currency', 3)->default('HUF');
             $table->string('sort_order', 3)->default(1);
             $table->string('featured', 1)->default(0);
             $table->string('status', 1)->default(1);

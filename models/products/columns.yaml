@@ -34,6 +34,9 @@ columns:
         searchable: true
         invisible: true
 
+    orders:
+        label: indikator.sellproducts::lang.form.orders
+
     status:
         label: indikator.sellproducts::lang.form.status
         sortable: false

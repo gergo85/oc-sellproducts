@@ -1,3 +1,3 @@
 <?php
 
-echo Indikator\SellProducts\Models\Category::where('id', $record->category)->pluck('name');
+echo Indikator\SellProducts\Models\Category::whereId($record->category)->value('name');

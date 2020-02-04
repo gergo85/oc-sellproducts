@@ -82,7 +82,7 @@ class Orders extends Controller
     {
         if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
             foreach ($checkedIds as $itemId) {
-                if (!$item = Item::whereId($itemId)) {
+                if (!$item = Item::where('status', 3)->whereId($itemId)) {
                     continue;
                 }
 

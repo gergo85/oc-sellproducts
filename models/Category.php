@@ -12,6 +12,9 @@ class Category extends Model
     public $rules = [
         'name'     => 'required',
         'slug'     => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'unique:indikator_sellproducts_products'],
+        'payment'  => 'required',
+        'currency' => 'required',
+        'locale'   => 'required',
         'featured' => 'required|between:0,1|numeric',
         'status'   => 'required|between:1,2|numeric'
     ];

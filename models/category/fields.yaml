@@ -20,20 +20,12 @@ fields:
 tabs:
     fields:
 
-        summary:
-            tab: indikator.sellproducts::lang.form.summary
-            type: richeditor
-            size: large
-
-        content:
-            tab: indikator.sellproducts::lang.form.content
-            type: richeditor
-            size: giant
-
         payment:
-            tab: indikator.sellproducts::lang.form.payment
+            tab: indikator.sellproducts::lang.form.payments
+            required: true
             prompt: indikator.sellproducts::lang.form.new_payment
             type: repeater
+            minItems: 1
             form:
                 fields:
                     payment_type:
@@ -49,6 +41,16 @@ tabs:
                         span: right
             span: full
 
+        summary:
+            tab: indikator.sellproducts::lang.form.summary
+            type: richeditor
+            size: large
+
+        content:
+            tab: indikator.sellproducts::lang.form.content
+            type: richeditor
+            size: giant
+
 secondaryTabs:
     fields:
 
@@ -58,14 +60,30 @@ secondaryTabs:
             mode: image
 
         currency:
-            label: indikator.sellproducts::lang.form.currency
-            placeholder: indikator.sellproducts::lang.form.currency_default
+            label: indikator.sellproducts::lang.settings.barion_currency
             required: true
+            type: dropdown
+            options:
+                'HUF': HUF
+                'EUR': EUR
+                'USD': USD
+                'CZK': CZK
+            span: auto
 
-        unit:
-            label: indikator.sellproducts::lang.form.unit
-            placeholder: indikator.sellproducts::lang.form.unit_default
+        locale:
+            label: indikator.sellproducts::lang.settings.barion_locale
             required: true
+            type: dropdown
+            options:
+                'hu-HU': hu-HU
+                'en-US': en-US
+                'de-DE': de-DE
+                'sl-SL': sl-SL
+                'sk-SK': sk-SK
+                'fr-FR': fr-FR
+                'cs-CZ': cs-CZ
+                'el-GR': el-GR
+            span: auto
 
         status:
             label: indikator.sellproducts::lang.form.status

@@ -5,12 +5,14 @@ use Indikator\SellProducts\Models\Category;
 use Indikator\SellProducts\Models\Orders;
 use Indikator\SellProducts\Models\Products;
 use Indikator\SellProducts\Models\Settings;
-use Indikator\SellProducts\Classes\Barion\BarionClient;
-use Indikator\SellProducts\Classes\Barion\Models\ItemModel;
-use Indikator\SellProducts\Classes\Barion\Models\PaymentTransactionModel;
-use Indikator\SellProducts\Classes\Barion\Models\PreparePaymentRequestModel;
+use Indikator\SellProducts\Payments\Barion\BarionClient;
+use Indikator\SellProducts\Payments\Barion\Models\Common\ItemModel;
+use Indikator\SellProducts\Payments\Barion\Models\Payment\PaymentTransactionModel;
+use Indikator\SellProducts\Payments\Barion\Models\Payment\PreparePaymentRequestModel;
+use Indikator\SellProducts\Payments\Barion\Models\Secure\ShippingAddressModel;
 use File;
 use Lang;
+use Config;
 use Redirect;
 use Validator;
 use ValidationException;
@@ -39,6 +41,11 @@ class Form extends ComponentBase
             ],
             'billing' => [
                 'title'   => 'indikator.sellproducts::lang.component.billing',
+                'default' => true,
+                'type'    => 'checkbox'
+            ],
+            'shipping' => [
+                'title'   => 'indikator.sellproducts::lang.component.shipping',
                 'default' => true,
                 'type'    => 'checkbox'
             ],
@@ -77,22 +84,18 @@ class Form extends ComponentBase
         // List products
         else {
             $this->page['warning']  = false;
+            $this->page['category'] = $this->property('category');
             $this->page['products'] = Products::where(['category' => $this->property('category'), 'status' => 1])->get()->all();
 
-            $category = Category::where('id', $this->property('category'))->first();
-            $payment = '';
+            $category = Category::whereId($this->property('category'))->first();
+            $payment  = '';
 
             foreach ($category->payment as $item) {
                 if (!Settings::get($item['payment_type'].'_enable', false)) {
                     continue;
                 }
 
-                if ($payment == '') {
-                    $checked = ' checked';
-                }
-                else {
-                    $checked = '';
-                }
+                $checked = ($payment == '') ? ' checked' : '';
 
                 $payment .= '<input type="radio" name="payment" value="'.$item['payment_type'].'" data-redirect="'.Settings::get($item['payment_type'].'_redirect', false).'" class="sellproducts_payment"'.$checked.'> '.Settings::get($item['payment_type'].'_name', false);
                 if ($item['payment_text'] != '') {
@@ -112,11 +115,14 @@ class Form extends ComponentBase
             'last_name'  => Lang::get('indikator.sellproducts::lang.form.last_name'),
             'email'      => Lang::get('indikator.sellproducts::lang.form.email'),
             'phone'      => Lang::get('indikator.sellproducts::lang.form.phone'),
+            'billing'    => Lang::get('indikator.sellproducts::lang.form.billing'),
+            'shipping'   => Lang::get('indikator.sellproducts::lang.form.shipping'),
             'name'       => Lang::get('indikator.sellproducts::lang.form.name'),
             'city'       => Lang::get('indikator.sellproducts::lang.form.city'),
             'zipcode'    => Lang::get('indikator.sellproducts::lang.form.zipcode'),
             'address'    => Lang::get('indikator.sellproducts::lang.form.address'),
             'comment'    => Lang::get('indikator.sellproducts::lang.form.comment'),
+            'unit'       => Lang::get('indikator.sellproducts::lang.form.unit_piece'),
             'items'      => Lang::get('indikator.sellproducts::lang.component.items'),
             'total'      => Lang::get('indikator.sellproducts::lang.component.total'),
             'payment'    => Lang::get('indikator.sellproducts::lang.component.payment'),
@@ -124,10 +130,11 @@ class Form extends ComponentBase
         ];
 
         // Display options
-        $this->page['total']   = $this->property('total');
-        $this->page['billing'] = $this->property('billing');
-        $this->page['comment'] = $this->property('comment');
-        $this->page['barion']  = $this->property('barion');
+        $this->page['total']    = $this->property('total');
+        $this->page['billing']  = $this->property('billing');
+        $this->page['shipping'] = $this->property('shipping');
+        $this->page['comment']  = $this->property('comment');
+        $this->page['barion']   = $this->property('barion');
     }
 
     public function onSellProducts()
@@ -139,18 +146,31 @@ class Form extends ComponentBase
         $rules = [
             'first_name' => 'required',
             'last_name'  => 'required',
-            'email'      => 'required',
-            'phone'      => 'required'
+            'email'      => 'required'
         ];
 
-        // Billing information
+        // Billing data
         if ($this->property('billing')) {
-            $rules .= [
-                'name'    => 'required',
-                'city'    => 'required',
-                'zipcode' => 'required',
-                'address' => 'required'
+            $more_rules = [
+                'billing_name'    => 'required',
+                'billing_zipcode' => 'required',
+                'billing_city'    => 'required',
+                'billing_address' => 'required'
             ];
+
+            $rules = array_merge($rules, $more_rules);
+        }
+
+        // Shipping data
+        if ($this->property('shipping')) {
+            $more_rules = [
+                'shipping_name'    => 'required',
+                'shipping_zipcode' => 'required',
+                'shipping_city'    => 'required',
+                'shipping_address' => 'required'
+            ];
+
+            $rules = array_merge($rules, $more_rules);
         }
 
         // Validation check
@@ -163,11 +183,28 @@ class Form extends ComponentBase
         $products = [];
         foreach ($data['quantity'] as $key => $value) {
             if ($value > 0) {
-                $products[] = [
-                    'product'  => $data['product'][$key],
-                    'quantity' => $value
-                ];
+                $product = Products::whereId($data['product'][$key])->first();
+                if ($product->status == 1) {
+                    $price = ($product->sale_price > 0) ? $product->sale_price : $product->price;
+
+                    $products[] = [
+                        'product'  => $data['product'][$key],
+                        'quantity' => $value,
+                        'price'    => $price * $value
+                    ];
+
+                    Products::whereId($data['product'][$key])->update(['orders' => $product->orders + $value]);
+
+                    if (!isset($category) && Category::where(['id' => $product->category, 'status' => 1])->count() == 1) {
+                        $category = Category::where(['id' => $product->category, 'status' => 1])->first();
+                    }
+                }
             }
+        }
+
+        // No item selected
+        if (count($products) == 0) {
+            return;
         }
 
         // Check data
@@ -191,49 +228,52 @@ class Form extends ComponentBase
         }
 
         // Add to database
-        \Indikator\SellProducts\Models\Orders::insertGetId([
-            'user'       => $data['user'],
-            'products'   => json_encode($products),
-            'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'email'      => $data['email'],
-            'phone'      => $data['phone'],
-            'name'       => $data['name'],
-            'city'       => $data['city'],
-            'zipcode'    => $data['zipcode'],
-            'address'    => $data['address'],
-            'comment'    => $data['comment'],
-            'payment'    => $data['payment'],
-            'status'     => 3,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+        $orderId = Orders::insertGetId([
+            'user'             => $data['user'],
+            'products'         => json_encode($products),
+            'first_name'       => $data['first_name'],
+            'last_name'        => $data['last_name'],
+            'email'            => $data['email'],
+            'phone'            => $data['phone'],
+            'billing_name'     => $data['billing_name'],
+            'billing_zipcode'  => $data['billing_zipcode'],
+            'billing_city'     => $data['billing_city'],
+            'billing_address'  => $data['billing_address'],
+            'shipping_name'    => $data['shipping_name'],
+            'shipping_zipcode' => $data['shipping_zipcode'],
+            'shipping_city'    => $data['shipping_city'],
+            'shipping_address' => $data['shipping_address'],
+            'comment'          => $data['comment'],
+            'payment'          => $data['payment'],
+            'status'           => 3,
+            'created_at'       => date('Y-m-d H:i:s'),
+            'updated_at'       => date('Y-m-d H:i:s')
         ]);
 
         // Barion payment
         if ($data['payment'] == 'barion' && Settings::get('barion_enable', false)) {
+
             // Main file
-            require_once $_SERVER['DOCUMENT_ROOT'].'/plugins/indikator/sellproducts/classes/barion/BarionClient.php';
+            require_once $_SERVER['DOCUMENT_ROOT'].'/plugins/indikator/sellproducts/payments/barion/BarionClient.php';
 
-            // Settings
-            $myPosKey    = Settings::get('barion_key', false);
-            $apiVersion  = 2;
-            $environment = Settings::get('barion_mode', false);
-
+            // Variables
+            $myPosKey = Settings::get('barion_key', false);
+            $envType  = Settings::get('barion_mode', false);
+ 
             // Barion Client
-            $BC = new BarionClient($myPosKey, $apiVersion, $environment);
+            $BC = new BarionClient($myPosKey, 2, $envType);
 
-            // Transaction
+            // Create the transaction
             $trans = new PaymentTransactionModel();
             $trans->POSTransactionId = 'TRANS-'.time();
-            $trans->Payee = Settings::get('barion_email', false);
-            $trans->Total = 0;
-            $trans->Currency = Settings::get('barion_currency', false);
-            $trans->Comment = '';
+            $trans->Payee   = Settings::get('barion_email', false);
+            $trans->Total   = 0;
+            $trans->Comment = $data['comment'];
 
-            // Products
+            // Create one or more items
             foreach ($products as $product) {
                 // Product
-                $details = Products::where('id', $product['product'])->first();
+                $details = Products::whereId($product['product'])->first();
 
                 // Check
                 if ($details->summary == '') {
@@ -242,46 +282,69 @@ class Form extends ComponentBase
 
                 // Item
                 $item = new ItemModel();
-                $item->Name = $details->name;
+                $item->Name        = $details->name;
                 $item->Description = $details->summary;
-                $item->Quantity = $product['quantity'];
-                $item->Unit = 'piece';
-                $item->UnitPrice = $details->price;
-                $item->ItemTotal = $details->price * $product['quantity'];
-                $item->SKU = 'ITEM-'.$details->id;
+                $item->Quantity    = $product['quantity'];
+                $item->Unit        = $details->unit;
+                $item->UnitPrice   = $details->price;
+                $item->ItemTotal   = $details->price * $product['quantity'];
+                $item->SKU         = 'ITEM-'.$details->id;
 
                 $trans->Total += $item->ItemTotal;
                 $trans->AddItem($item);
             }
 
-            // Prepare
-            $ppr = new PreparePaymentRequestModel();
-            $ppr->GuestCheckout = true;
-            $ppr->PaymentType = 'Immediate';
-            $ppr->FundingSources = ['All'];
-            $ppr->PaymentRequestId = 'PAYMENT-'.time();
-            $ppr->PayerHint = $data['email'];
-            $ppr->Locale = Settings::get('barion_locale', false);
-            $ppr->OrderNumber = 'ORDER-'.Orders::count();
-            $ppr->Currency = Settings::get('barion_currency', false);
-            $ppr->ShippingAddress = $data['zipcode'].' '.$data['address'];
-            $ppr->RedirectUrl = Settings::get('barion_redirect', false);
-            $ppr->CallbackUrl = Settings::get('barion_callback', false);
-            $ppr->AddTransaction($trans);
+            // Create the shipping address
+            $shippingAddress = new ShippingAddressModel();
+            $shippingAddress->Country  = 'HU';
+            $shippingAddress->Region   = null;
+            $shippingAddress->City     = $data['city'];
+            $shippingAddress->Zip      = $data['zipcode'];
+            $shippingAddress->Street   = $data['address'];
+            $shippingAddress->Street2  = '';
+            $shippingAddress->Street3  = '';
+            $shippingAddress->FullName = $data['first_name'].' '.$data['last_name'];
 
-            // Payment
-            $myPayment = $BC->PreparePayment($ppr);
-
-            // URL type
-            if ($environment == 'prod') {
-                $redirectUrl = BARION_WEB_URL_PROD;
+            // Locale and currency
+            if (isset($category)) {
+                $locale   = $category->locale;
+                $currency = $category->currency;
             }
             else {
-                $redirectUrl = BARION_WEB_URL_TEST;
+                $locale   = Settings::get('barion_locale', false);
+                $currency = Settings::get('barion_currency', false);
             }
 
-            // Redirect
-            return Redirect::to($redirectUrl.'?id='.$myPayment->PaymentId);
+            // Create the payment request
+            $psr = new PreparePaymentRequestModel();
+            $psr->GuestCheckout    = true;
+            $psr->PaymentType      = Settings::get('barion_type', false);
+            $psr->FundingSources   = ['All'];
+            $psr->PaymentRequestId = 'PAYMENT-'.time();
+            $psr->PayerHint        = $data['email'];
+            $psr->Locale           = $locale;
+            $psr->Currency         = $currency;
+            $psr->OrderNumber      = 'ORDER-'.Orders::count();
+            $psr->ShippingAddress  = $shippingAddress;
+            $psr->RedirectUrl      = Config::get('app.url').Settings::get('barion_redirect', false);
+            $psr->CallbackUrl      = Config::get('app.url').Settings::get('barion_callback', false);
+            $psr->AddTransaction($trans);
+
+            // Send the request
+            $myPayment = $BC->PreparePayment($psr);
+
+            // Request is successful
+            if ($myPayment->RequestSuccessful === true) {
+
+                // Set status to Paid
+                Orders::whereId($orderId)->update(['status' => 4]);
+
+                // URL type
+                $redirectUrl = ($envType == 'prod') ? BARION_WEB_URL_PROD : BARION_WEB_URL_TEST;
+
+                // Redirect
+                return Redirect::to($redirectUrl.'?id='.$myPayment->PaymentId);
+            }
         }
 
         // Transfer payment

@@ -17,7 +17,8 @@ class CreateProductsTable extends Migration
             $table->string('category', 3)->default(0);
             $table->text('summary')->nullable();
             $table->longtext('content')->nullable();
-            $table->string('image', 200)->nullable();
+            $table->string('image', 191)->nullable();
+            $table->string('unit', 10)->default('piece');
             $table->string('is_old', 1)->default(0);
             $table->string('is_sale', 1)->default(0);
             $table->string('sale_price', 10)->default(0);
@@ -25,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->timestamp('sale_end')->nullable();
             $table->string('featured', 1)->default(0);
             $table->string('status', 1)->default(1);
+            $table->string('orders', 4)->default(0);
             $table->timestamps();
         });
     }

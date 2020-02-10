@@ -109,11 +109,12 @@ secondaryTabs:
 
         payment:
             label: indikator.sellproducts::lang.form.payment
-            type: dropdown
+            type: radio
             options:
                 'barion': indikator.sellproducts::lang.settings.barion_label
                 'transfer': indikator.sellproducts::lang.settings.transfer_label
                 'cash': indikator.sellproducts::lang.settings.cash_label
+            default: 'barion'
 
         comment:
             label: indikator.sellproducts::lang.form.comment
@@ -128,4 +129,4 @@ secondaryTabs:
                 3: indikator.sellproducts::lang.form.status_pending
                 4: indikator.sellproducts::lang.form.status_paid
                 5: indikator.sellproducts::lang.form.status_closed
-            default: 1
+            default: 3

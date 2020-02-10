@@ -22,8 +22,8 @@ class Form extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'indikator.sellproducts::lang.component.name',
-            'description' => 'indikator.sellproducts::lang.component.description'
+            'name'        => 'indikator.sellproducts::lang.component.form.name',
+            'description' => 'indikator.sellproducts::lang.component.form.description'
         ];
     }
 
@@ -35,28 +35,23 @@ class Form extends ComponentBase
                 'type'    => 'dropdown'
             ],
             'total' => [
-                'title'   => 'indikator.sellproducts::lang.component.total',
+                'title'   => 'indikator.sellproducts::lang.component.form.total',
                 'default' => true,
                 'type'    => 'checkbox'
             ],
             'billing' => [
-                'title'   => 'indikator.sellproducts::lang.component.billing',
+                'title'   => 'indikator.sellproducts::lang.component.form.billing',
                 'default' => true,
                 'type'    => 'checkbox'
             ],
             'shipping' => [
-                'title'   => 'indikator.sellproducts::lang.component.shipping',
+                'title'   => 'indikator.sellproducts::lang.component.form.shipping',
                 'default' => true,
                 'type'    => 'checkbox'
             ],
             'comment' => [
-                'title'   => 'indikator.sellproducts::lang.component.comment',
+                'title'   => 'indikator.sellproducts::lang.component.form.comment',
                 'default' => true,
-                'type'    => 'checkbox'
-            ],
-            'barion' => [
-                'title'   => 'indikator.sellproducts::lang.component.barion',
-                'default' => false,
                 'type'    => 'checkbox'
             ]
         ];
@@ -78,7 +73,7 @@ class Form extends ComponentBase
         // No product
         if (Products::where(['category' => $this->property('category'), 'status' => 1])->count() == 0) {
             $this->page['warning']  = true;
-            $this->page['products'] = Lang::get('indikator.sellproducts::lang.component.warning');
+            $this->page['products'] = Lang::get('indikator.sellproducts::lang.component.form.warning');
         }
 
         // List products
@@ -110,7 +105,7 @@ class Form extends ComponentBase
 
         // Translate form
         $this->page['form'] = [
-            'personal'   => Lang::get('indikator.sellproducts::lang.component.personal'),
+            'personal'   => Lang::get('indikator.sellproducts::lang.component.form.personal'),
             'first_name' => Lang::get('indikator.sellproducts::lang.form.first_name'),
             'last_name'  => Lang::get('indikator.sellproducts::lang.form.last_name'),
             'email'      => Lang::get('indikator.sellproducts::lang.form.email'),
@@ -123,10 +118,10 @@ class Form extends ComponentBase
             'address'    => Lang::get('indikator.sellproducts::lang.form.address'),
             'comment'    => Lang::get('indikator.sellproducts::lang.form.comment'),
             'unit'       => Lang::get('indikator.sellproducts::lang.form.unit_piece'),
-            'items'      => Lang::get('indikator.sellproducts::lang.component.items'),
-            'total'      => Lang::get('indikator.sellproducts::lang.component.total'),
-            'payment'    => Lang::get('indikator.sellproducts::lang.component.payment'),
-            'submit'     => Lang::get('indikator.sellproducts::lang.component.submit')
+            'items'      => Lang::get('indikator.sellproducts::lang.component.form.items'),
+            'total'      => Lang::get('indikator.sellproducts::lang.component.form.total'),
+            'payment'    => Lang::get('indikator.sellproducts::lang.component.form.payment'),
+            'submit'     => Lang::get('indikator.sellproducts::lang.component.form.submit')
         ];
 
         // Display options
@@ -134,7 +129,6 @@ class Form extends ComponentBase
         $this->page['billing']  = $this->property('billing');
         $this->page['shipping'] = $this->property('shipping');
         $this->page['comment']  = $this->property('comment');
-        $this->page['barion']   = $this->property('barion');
     }
 
     public function onSellProducts()

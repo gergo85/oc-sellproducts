@@ -129,19 +129,25 @@ return [
         'cash_value' => 'Cash payment'
     ],
     'component' => [
-        'name' => 'Generated form',
-        'description' => 'Display product for sell.',
-        'total' => 'Show total under the products',
-        'billing' => 'Show billing data',
-        'shipping' => 'Show shipping data',
-        'comment' => 'Show comment field',
-        'barion' => 'Show Barion payment logos',
-        'warning' => 'There are no products to display.',
-        'personal' => 'Personal details',
-        'items' => 'Items',
-        'total' => 'Total',
-        'payment' => 'Payment type',
-        'submit' => 'Submit'
+        'form' => [
+            'name' => 'Generated form',
+            'description' => 'Display product for sell.',
+            'total' => 'Show total under the products',
+            'billing' => 'Show billing data',
+            'shipping' => 'Show shipping data',
+            'comment' => 'Show comment field',
+            'barion' => 'Show Barion payment logos',
+            'warning' => 'There are no products to display.',
+            'personal' => 'Personal details',
+            'items' => 'Items',
+            'total' => 'Total',
+            'payment' => 'Payment type',
+            'submit' => 'Submit'
+        ],
+        'logo' => [
+            'name' => 'Payment logo',
+            'description' => 'Display the logo of payment.'
+        ]
     ],
     'permission' => [
         'orders' => 'Manage orders',

@@ -24,6 +24,7 @@ class Plugin extends PluginBase
                 'label'       => 'indikator.sellproducts::lang.plugin.name',
                 'url'         => Backend::url('indikator/sellproducts/orders'),
                 'icon'        => 'icon-shopping-bag',
+                'iconSvg'     => 'plugins/indikator/sellproducts/assets/images/sellproducts-icon.svg', 
                 'permissions' => ['indikator.sellproducts.*'],
                 'order'       => 500,
 
@@ -80,7 +81,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Indikator\SellProducts\Components\Form' => 'form'
+            'Indikator\SellProducts\Components\Form' => 'form',
+            'Indikator\SellProducts\Components\Logo' => 'logo'
         ];
     }
 

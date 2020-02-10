@@ -129,19 +129,25 @@ return [
         'cash_value' => 'Készpénzes fizetés'
     ],
     'component' => [
-        'name' => 'Űrlap generálása',
-        'description' => 'Termékek megjelenítése eladáshoz.',
-        'total' => 'Összegzés mutatása a termékek alatt',
-        'billing' => 'Számlázási adatok mutatása',
-        'shipping' => 'Szállítási adatok mutatása',
-        'comment' => 'Megjegyzés mező mutatása',
-        'barion' => 'Barion logók megjelenítése',
-        'warning' => 'Nincs megjeleníthető termék.',
-        'personal' => 'Személyes adatok',
-        'items' => 'Tételek',
-        'total' => 'Összesen',
-        'payment' => 'Fizetési mód',
-        'submit' => 'Rendelés'
+        'form' => [
+            'name' => 'Űrlap generálása',
+            'description' => 'Termékek megjelenítése eladáshoz.',
+            'total' => 'Összegzés mutatása a termékek alatt',
+            'billing' => 'Számlázási adatok mutatása',
+            'shipping' => 'Szállítási adatok mutatása',
+            'comment' => 'Megjegyzés mező mutatása',
+            'barion' => 'Barion logók megjelenítése',
+            'warning' => 'Nincs megjeleníthető termék.',
+            'personal' => 'Személyes adatok',
+            'items' => 'Tételek',
+            'total' => 'Összesen',
+            'payment' => 'Fizetési mód',
+            'submit' => 'Rendelés'
+        ],
+        'logo' => [
+            'name' => 'Fizetési logó',
+            'description' => 'Megjeleníti a fizetéshez tartozó logót.'
+        ]
     ],
     'permission' => [
         'orders' => 'Rendelések kezelése',

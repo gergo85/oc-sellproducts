@@ -104,10 +104,7 @@
                 <strong>{{ form.payment }}</strong><br>
                 {{ payment|raw }}<br>
                 {% endif %}
-                <input type="submit" value="{{ form.submit }}">
-                {% if barion %}
-                <br><br><img src="{{ '/'|app }}/plugins/indikator/sellproducts/assets/img/barion-card-payment.png" alt="Barion">
-                {% endif %}
+                <input type="submit" value="{{ form.submit }}" class="btn btn-primary">
             </div>
             <div class="clearfix"></div>
         </form>

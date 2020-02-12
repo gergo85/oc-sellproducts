@@ -26,7 +26,7 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-shopping-bag',
                 'iconSvg'     => 'plugins/indikator/sellproducts/assets/images/sellproducts-icon.svg', 
                 'permissions' => ['indikator.sellproducts.*'],
-                'order'       => 500,
+                'order'       => 330,
 
                 'sideMenu' => [
                     'orders' => [

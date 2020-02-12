@@ -33,31 +33,36 @@ class Plugin extends PluginBase
                         'label'       => 'indikator.sellproducts::lang.menu.orders',
                         'url'         => Backend::url('indikator/sellproducts/orders'),
                         'icon'        => 'icon-shopping-cart',
-                        'permissions' => ['indikator.sellproducts.orders']
+                        'permissions' => ['indikator.sellproducts.orders'],
+                        'order'       => 100
                     ],
                     'reports' => [
                         'label'       => 'indikator.sellproducts::lang.menu.reports',
                         'url'         => Backend::url('indikator/sellproducts/reports'),
                         'icon'        => 'icon-area-chart',
-                        'permissions' => ['indikator.sellproducts.reports']
+                        'permissions' => ['indikator.sellproducts.reports'],
+                        'order'       => 200
                     ],
                     'products' => [
                         'label'       => 'indikator.sellproducts::lang.menu.products',
                         'url'         => Backend::url('indikator/sellproducts/products'),
                         'icon'        => 'icon-cubes',
-                        'permissions' => ['indikator.sellproducts.products']
+                        'permissions' => ['indikator.sellproducts.products'],
+                        'order'       => 300
                     ],
                     'category' => [
                         'label'       => 'indikator.sellproducts::lang.menu.category',
                         'url'         => Backend::url('indikator/sellproducts/category'),
                         'icon'        => 'icon-tags',
-                        'permissions' => ['indikator.sellproducts.category']
+                        'permissions' => ['indikator.sellproducts.category'],
+                        'order'       => 400
                     ],
                     'settings' => [
                         'label'       => 'indikator.sellproducts::lang.menu.settings',
                         'url'         => Backend::url('system/settings/update/indikator/sellproducts/settings'),
                         'icon'        => 'icon-cogs',
-                        'permissions' => ['indikator.sellproducts.settings']
+                        'permissions' => ['indikator.sellproducts.settings'],
+                        'order'       => 500
                     ]
                 ]
             ]

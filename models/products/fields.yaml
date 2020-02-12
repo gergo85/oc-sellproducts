@@ -9,45 +9,62 @@ fields:
         required: true
         attributes:
            autofocus: ''
-        span: auto
+        span: storm
+        cssClass: col-lg-6
 
     slug:
         label: indikator.sellproducts::lang.form.slug
         required: true
         preset: name
-        span: auto
-
-    price:
-        label: indikator.sellproducts::lang.form.price
-        required: true
-        span: auto
+        span: storm
+        cssClass: col-lg-6
 
     category:
         label: indikator.sellproducts::lang.form.category
         required: true
         type: dropdown
-        span: auto
+        span: storm
+        cssClass: col-md-8 col-lg-6
+
+    price:
+        label: indikator.sellproducts::lang.form.price
+        required: true
+        span: storm
+        cssClass: col-md-4 col-lg-6
 
 tabs:
+
+    icons:
+
+        indikator.sellproducts::lang.form.summary: icon-commenting-o
+        indikator.sellproducts::lang.form.content: icon-file-text-o
+
     fields:
 
         summary:
             tab: indikator.sellproducts::lang.form.summary
             type: richeditor
             size: large
+            span: storm
+            cssClass: col-xs-12
 
         content:
             tab: indikator.sellproducts::lang.form.content
             type: richeditor
             size: giant
+            span: storm
+            cssClass: col-xs-12
 
 secondaryTabs:
+
     fields:
 
         image:
             label: indikator.sellproducts::lang.form.image
             type: mediafinder
             mode: image
+            span: storm
+            cssClass: col-xs-12
 
         unit:
             label: indikator.sellproducts::lang.form.unit
@@ -56,6 +73,8 @@ secondaryTabs:
             options:
                 piece: indikator.sellproducts::lang.form.unit_piece
             default: piece
+            span: storm
+            cssClass: col-xs-12
 
         is_old:
             label: indikator.sellproducts::lang.form.is_old
@@ -65,7 +84,8 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.yes
                 0: indikator.sellproducts::lang.form.no
             default: 0
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         is_sale:
             label: indikator.sellproducts::lang.form.is_sale
@@ -75,7 +95,8 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.yes
                 0: indikator.sellproducts::lang.form.no
             default: 0
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         sale_price:
             label: indikator.sellproducts::lang.form.sale_price
@@ -83,6 +104,8 @@ secondaryTabs:
                 action: show
                 field: is_sale
                 condition: value[1]
+            span: storm
+            cssClass: col-xs-12
 
         sale_start:
             label: indikator.sellproducts::lang.form.sale_start
@@ -92,6 +115,8 @@ secondaryTabs:
                 field: is_sale
                 condition: value[1]
             mode: datetime
+            span: storm
+            cssClass: col-xs-12
 
         sale_end:
             label: indikator.sellproducts::lang.form.sale_end
@@ -101,6 +126,8 @@ secondaryTabs:
                 field: is_sale
                 condition: value[1]
             mode: datetime
+            span: storm
+            cssClass: col-xs-12
 
         status:
             label: indikator.sellproducts::lang.form.status
@@ -110,7 +137,8 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.status_active
                 2: indikator.sellproducts::lang.form.status_inactive
             default: 1
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         featured:
             label: indikator.sellproducts::lang.form.featured
@@ -120,4 +148,5 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.yes
                 0: indikator.sellproducts::lang.form.no
             default: 0
-            span: auto
+            span: storm
+            cssClass: col-xs-6

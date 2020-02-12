@@ -10,14 +10,25 @@ fields:
         attributes:
            autofocus: ''
         span: auto
+        span: storm
+        cssClass: col-lg-6
 
     slug:
         label: indikator.sellproducts::lang.form.slug
         required: true
         preset: name
         span: auto
+        span: storm
+        cssClass: col-lg-6
 
 tabs:
+
+    icons:
+
+        indikator.sellproducts::lang.form.payments: icon-credit-card
+        indikator.sellproducts::lang.form.summary: icon-commenting-o
+        indikator.sellproducts::lang.form.content: icon-file-text-o
+
     fields:
 
         payment:
@@ -35,29 +46,39 @@ tabs:
                             'barion': indikator.sellproducts::lang.settings.barion_label
                             'transfer': indikator.sellproducts::lang.settings.transfer_label
                             'cash': indikator.sellproducts::lang.settings.cash_label
-                        span: left
-                    payment_text:
-                        label: indikator.sellproducts::lang.form.payment_text
-                        span: right
-            span: full
+                        span: storm
+                        cssClass: col-md-4
+                    payment_comment:
+                        label: indikator.sellproducts::lang.form.payment_comment
+                        span: storm
+                        cssClass: col-md-8
+            span: storm
+            cssClass: col-xs-12
 
         summary:
             tab: indikator.sellproducts::lang.form.summary
             type: richeditor
             size: large
+            span: storm
+            cssClass: col-xs-12
 
         content:
             tab: indikator.sellproducts::lang.form.content
             type: richeditor
             size: giant
+            span: storm
+            cssClass: col-xs-12
 
 secondaryTabs:
+
     fields:
 
         image:
             label: indikator.sellproducts::lang.form.image
             type: mediafinder
             mode: image
+            span: storm
+            cssClass: col-xs-12
 
         currency:
             label: indikator.sellproducts::lang.settings.barion_currency
@@ -68,7 +89,8 @@ secondaryTabs:
                 'EUR': EUR
                 'USD': USD
                 'CZK': CZK
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         locale:
             label: indikator.sellproducts::lang.settings.barion_locale
@@ -83,7 +105,8 @@ secondaryTabs:
                 'fr-FR': fr-FR
                 'cs-CZ': cs-CZ
                 'el-GR': el-GR
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         status:
             label: indikator.sellproducts::lang.form.status
@@ -93,7 +116,8 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.status_active
                 2: indikator.sellproducts::lang.form.status_inactive
             default: 1
-            span: auto
+            span: storm
+            cssClass: col-xs-6
 
         featured:
             label: indikator.sellproducts::lang.form.featured
@@ -103,4 +127,5 @@ secondaryTabs:
                 1: indikator.sellproducts::lang.form.yes
                 0: indikator.sellproducts::lang.form.no
             default: 0
-            span: auto
+            span: storm
+            cssClass: col-xs-6

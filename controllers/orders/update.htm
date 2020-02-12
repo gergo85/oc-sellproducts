@@ -1,10 +1,6 @@
 <?php
-
-$uri = explode('/', Request::path());
-
-$previous = \Indikator\SellProducts\Models\Orders::where('id', '<', $uri[5])->max('id');
-$next     = \Indikator\SellProducts\Models\Orders::where('id', '>', $uri[5])->min('id');
-
+$prev = \Indikator\SellProducts\Models\Orders::where('id', '<', $formModel->id)->max('id');
+$next = \Indikator\SellProducts\Models\Orders::where('id', '>', $formModel->id)->min('id');
 ?>
 
 <?php Block::put('breadcrumb') ?>
@@ -25,7 +21,7 @@ $next     = \Indikator\SellProducts\Models\Orders::where('id', '>', $uri[5])->mi
             <?= $this->formRenderPrimaryTabs() ?>
         </div>
 
-        <div class="form-buttons">
+        <div class="form-buttons" style="padding: 20px 15px;">
             <div class="loading-indicator-container">
                 <button
                     type="submit"
@@ -56,9 +52,9 @@ $next     = \Indikator\SellProducts\Models\Orders::where('id', '>', $uri[5])->mi
                     title="<?= e(trans('indikator.content::lang.button.next')) ?>">
                 </a>
                 <?php endif ?>
-                <?php if ($previous): ?>
+                <?php if ($prev): ?>
                 <a
-                    href="<?= $previous; ?>"
+                    href="<?= $prev; ?>"
                     class="oc-icon-angle-left btn-icon pull-right"
                     style="font-size: 24px; text-decoration:none"
                     title="<?= e(trans('indikator.content::lang.button.previous')) ?>">

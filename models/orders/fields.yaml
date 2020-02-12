@@ -3,6 +3,12 @@
 # ===================================
 
 tabs:
+
+    icons:
+
+        indikator.sellproducts::lang.form.customer: icon-user
+        indikator.sellproducts::lang.form.products: icon-cubes
+
     fields:
 
         first_name:
@@ -11,75 +17,90 @@ tabs:
             required: true
             attributes:
                autofocus: ''
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         last_name:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.last_name
             required: true
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         email:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.email
             required: true
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         phone:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.phone
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         billing_title:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.billing
             type: section
-
+            span: storm
+            cssClass: col-xs-12
 
         billing_name:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.name
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         billing_zipcode:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.zipcode
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         billing_city:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.city
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         billing_address:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.address
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         shipping_title:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.shipping
             type: section
+            span: storm
+            cssClass: col-xs-12
 
         shipping_name:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.name
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         shipping_zipcode:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.zipcode
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         shipping_city:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.city
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         shipping_address:
             tab: indikator.sellproducts::lang.form.customer
             label: indikator.sellproducts::lang.form.address
-            span: auto
+            span: storm
+            cssClass: col-lg-6
 
         products:
             tab: indikator.sellproducts::lang.form.products
@@ -91,35 +112,31 @@ tabs:
                         label: indikator.sellproducts::lang.form.product
                         type: dropdown
                         span: storm
-                        cssClass: col-sm-6
+                        cssClass: col-sm-12 col-md-6
                     price:
                         label: indikator.sellproducts::lang.form.price
                         type: number
                         span: storm
-                        cssClass: col-sm-3
+                        cssClass: col-xs-7 col-sm-6 col-md-3
                     quantity:
                         label: indikator.sellproducts::lang.form.quantity
                         type: number
                         span: storm
-                        cssClass: col-sm-3
+                        cssClass: col-xs-5 col-sm-6 col-md-3
             span: full
+            span: storm
+            cssClass: col-xs-12
 
 secondaryTabs:
-    fields:
 
-        payment:
-            label: indikator.sellproducts::lang.form.payment
-            type: radio
-            options:
-                'barion': indikator.sellproducts::lang.settings.barion_label
-                'transfer': indikator.sellproducts::lang.settings.transfer_label
-                'cash': indikator.sellproducts::lang.settings.cash_label
-            default: 'barion'
+    fields:
 
         comment:
             label: indikator.sellproducts::lang.form.comment
             type: textarea
-            size: large
+            size: small
+            span: storm
+            cssClass: col-xs-12
 
         status:
             label: indikator.sellproducts::lang.form.status
@@ -130,3 +147,16 @@ secondaryTabs:
                 4: indikator.sellproducts::lang.form.status_paid
                 5: indikator.sellproducts::lang.form.status_closed
             default: 3
+            span: storm
+            cssClass: col-xs-6
+
+        payment:
+            label: indikator.sellproducts::lang.form.payment
+            type: radio
+            options:
+                'barion': indikator.sellproducts::lang.settings.barion_label
+                'transfer': indikator.sellproducts::lang.settings.transfer_label
+                'cash': indikator.sellproducts::lang.settings.cash_label
+            default: 'barion'
+            span: storm
+            cssClass: col-xs-6

@@ -34,7 +34,7 @@ return [
         'payments' => 'Fizetési lehetőségek',
         'new_payment' => 'Új fizetés',
         'payment_type' => 'Típus',
-        'payment_text' => 'Megjegyzés',
+        'payment_comment' => 'Megjegyzés',
         'image' => 'Kép',
         'category' => 'Kategória',
         'price' => 'Ár',
@@ -89,7 +89,7 @@ return [
         'pending' => 'Folyamatban',
         'active' => 'Aktív',
         'inactive' => 'Inaktív',
-        'reorder' => 'Rendezés',
+        'reorder' => 'Sorrend',
         'previous' => 'Előző',
         'next' => 'Következő',
         'return' => 'Vissza'

@@ -34,7 +34,7 @@ return [
         'payments' => 'Payment types',
         'new_payment' => 'New payment',
         'payment_type' => 'Type',
-        'payment_text' => 'Comment',
+        'payment_comment' => 'Comment',
         'locale' => 'Locale',
         'image' => 'Image',
         'category' => 'Category',

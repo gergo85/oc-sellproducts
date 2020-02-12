@@ -1,11 +1,12 @@
 .row {
-    margin-bottom: 30px;
+    margin: 6px 0 30px 0;
 }
 
 .row .report-widget {
     box-shadow:         3px 3px 11px 0 rgba(217, 217, 217, 1);
     -moz-box-shadow:    3px 3px 11px 0 rgba(217, 217, 217, 1);
     -webkit-box-shadow: 3px 3px 11px 0 rgba(217, 217, 217, 1);
+    padding: 29px 30px;
 }
 
 .row .report-widget h3 {

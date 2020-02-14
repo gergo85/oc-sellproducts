@@ -10,17 +10,15 @@
 <?php Block::endPut() ?>
 
 <?php if (Indikator\SellProducts\Models\Category::count() > 0): ?>
-	<?= $this->listRender() ?>
+    <?= $this->listRender() ?>
 <?php else :?>
-<div class="row" style="padding:0 20px">
-    <div class="col-md-12">
+    <div style="padding:0 20px;">
         <div class="callout callout-warning">
             <div class="header">
-                <i class="icon-arrow-circle-right"></i> 
-                <h3><?= e(trans('indikator.sellproducts::lang.list.error_title')) ?></h3>
-                <p><?= e(trans('indikator.sellproducts::lang.list.error_desc')) ?></p>
+                <i class="icon-info-circle"></i>
+                <h3><?= e(trans('indikator.sellproducts::lang.list.warning_title')) ?></h3>
+                <p><a href="<?= Backend::url('indikator/sellproducts/category/create') ?>" style="color:#2F2D26;"><?= e(trans('indikator.sellproducts::lang.list.warning_products')) ?></a></p>
             </div>
         </div>
     </div>
-</div>
 <?php endif; ?>

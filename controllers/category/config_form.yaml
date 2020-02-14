@@ -2,7 +2,7 @@
 #  Form Behavior Config
 # ===================================
 
-name: indikator.sellproducts::lang.title.products
+name: indikator.sellproducts::lang.title.category
 form: ~/plugins/indikator/sellproducts/models/category/fields.yaml
 
 modelClass: Indikator\SellProducts\Models\Category

@@ -55,13 +55,6 @@ tabs:
             span: storm
             cssClass: col-xs-12
 
-        summary:
-            tab: indikator.sellproducts::lang.form.summary
-            type: richeditor
-            size: large
-            span: storm
-            cssClass: col-xs-12
-
         content:
             tab: indikator.sellproducts::lang.form.content
             type: richeditor
@@ -81,7 +74,7 @@ secondaryTabs:
             cssClass: col-xs-12
 
         currency:
-            label: indikator.sellproducts::lang.settings.barion_currency
+            label: indikator.sellproducts::lang.form.currency
             required: true
             type: dropdown
             options:
@@ -93,18 +86,18 @@ secondaryTabs:
             cssClass: col-xs-6
 
         locale:
-            label: indikator.sellproducts::lang.settings.barion_locale
+            label: indikator.sellproducts::lang.form.locale
             required: true
             type: dropdown
             options:
-                'hu-HU': hu-HU
-                'en-US': en-US
-                'de-DE': de-DE
-                'sl-SL': sl-SL
-                'sk-SK': sk-SK
-                'fr-FR': fr-FR
-                'cs-CZ': cs-CZ
-                'el-GR': el-GR
+                'hu-HU': indikator.sellproducts::lang.form.locale_hu
+                'en-US': indikator.sellproducts::lang.form.locale_en
+                'de-DE': indikator.sellproducts::lang.form.locale_de
+                'sl-SL': indikator.sellproducts::lang.form.locale_sl
+                'sk-SK': indikator.sellproducts::lang.form.locale_sk
+                'fr-FR': indikator.sellproducts::lang.form.locale_fr
+                'cs-CZ': indikator.sellproducts::lang.form.locale_cs
+                'el-GR': indikator.sellproducts::lang.form.locale_el
             span: storm
             cssClass: col-xs-6
 

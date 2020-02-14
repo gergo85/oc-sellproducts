@@ -19,6 +19,11 @@ scopes:
         type: checkbox
         conditions: status = 5
 
+    status_cancelled:
+        label: indikator.sellproducts::lang.form.status_cancelled
+        type: checkbox
+        conditions: status = 6
+
     created_date:
         label: indikator.sellproducts::lang.list.created_at
         type: daterange

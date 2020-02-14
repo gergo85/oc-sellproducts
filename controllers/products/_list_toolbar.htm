@@ -5,6 +5,11 @@
         <?= e(trans('indikator.sellproducts::lang.new.products')) ?>
     </a>
     <?php if (Indikator\SellProducts\Models\Products::count() > 0): ?>
+    <a
+        href="<?= Backend::url('indikator/sellproducts/products/reorder') ?>"
+        class="btn btn-default oc-icon-random">
+        <?= e(trans('indikator.sellproducts::lang.button.reorder')) ?>
+    </a>
     <div class="btn-group">
         <button
             class="btn btn-default oc-icon-check"

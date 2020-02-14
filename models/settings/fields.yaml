@@ -49,32 +49,6 @@ tabs:
                 'Immediate': indikator.sellproducts::lang.settings.barion_type_immediate
             span: auto
 
-        barion_currency:
-            tab: indikator.sellproducts::lang.settings.barion_label
-            label: indikator.sellproducts::lang.settings.barion_currency
-            type: dropdown
-            options:
-                'HUF': HUF
-                'EUR': EUR
-                'USD': USD
-                'CZK': CZK
-            span: auto
-
-        barion_locale:
-            tab: indikator.sellproducts::lang.settings.barion_label
-            label: indikator.sellproducts::lang.settings.barion_locale
-            type: dropdown
-            options:
-                'hu-HU': hu-HU
-                'en-US': en-US
-                'de-DE': de-DE
-                'sl-SL': sl-SL
-                'sk-SK': sk-SK
-                'fr-FR': fr-FR
-                'cs-CZ': cs-CZ
-                'el-GR': el-GR
-            span: auto
-
         barion_redirect:
             tab: indikator.sellproducts::lang.settings.barion_label
             label: indikator.sellproducts::lang.settings.barion_redirect

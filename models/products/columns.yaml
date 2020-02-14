@@ -17,12 +17,6 @@ columns:
         searchable: true
         invisible: true
 
-    price:
-        label: indikator.sellproducts::lang.form.price
-        sortable: false
-        type: partial
-        path: ~/plugins/indikator/sellproducts/models/products/_price.htm
-
     category:
         label: indikator.sellproducts::lang.form.category
         sortable: false
@@ -33,6 +27,16 @@ columns:
         label: indikator.sellproducts::lang.form.summary
         searchable: true
         invisible: true
+
+    price:
+        label: indikator.sellproducts::lang.form.unit_price
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/products/_price.htm
+
+    quantity:
+        label: indikator.sellproducts::lang.form.quantity
+        searchable: true
 
     orders:
         label: indikator.sellproducts::lang.form.orders

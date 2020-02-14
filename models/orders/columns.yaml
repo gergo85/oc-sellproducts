@@ -7,6 +7,35 @@ columns:
     id:
         label: indikator.sellproducts::lang.form.id
 
+    first_name:
+        label: indikator.sellproducts::lang.form.first_name
+        searchable: true
+
+    last_name:
+        label: indikator.sellproducts::lang.form.last_name
+        searchable: true
+
+    email:
+        label: indikator.sellproducts::lang.form.email
+        searchable: true
+
+    phone:
+        label: indikator.sellproducts::lang.form.phone
+        searchable: true
+        sortable: false
+
+    comment:
+        label: indikator.sellproducts::lang.form.comment
+        searchable: true
+        invisible: true
+        sortable: false
+
+    total:
+        label: indikator.sellproducts::lang.form.price_total
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/orders/_total.htm
+
     payment:
         label: indikator.sellproducts::lang.form.payment
         sortable: false

@@ -24,13 +24,18 @@ fields:
         required: true
         type: dropdown
         span: storm
-        cssClass: col-md-8 col-lg-6
+        cssClass: col-xs-12
 
     price:
-        label: indikator.sellproducts::lang.form.price
+        label: indikator.sellproducts::lang.form.unit_price
         required: true
         span: storm
-        cssClass: col-md-4 col-lg-6
+        cssClass: col-xs-6
+
+    sale_price:
+        label: indikator.sellproducts::lang.form.sale_price
+        span: storm
+        cssClass: col-xs-6
 
 tabs:
 
@@ -66,6 +71,13 @@ secondaryTabs:
             span: storm
             cssClass: col-xs-12
 
+        quantity:
+            label: indikator.sellproducts::lang.form.quantity
+            required: true
+            default: 1
+            span: storm
+            cssClass: col-xs-6
+
         unit:
             label: indikator.sellproducts::lang.form.unit
             required: true
@@ -74,60 +86,7 @@ secondaryTabs:
                 piece: indikator.sellproducts::lang.form.unit_piece
             default: piece
             span: storm
-            cssClass: col-xs-12
-
-        is_old:
-            label: indikator.sellproducts::lang.form.is_old
-            required: true
-            type: radio
-            options:
-                1: indikator.sellproducts::lang.form.yes
-                0: indikator.sellproducts::lang.form.no
-            default: 0
-            span: storm
             cssClass: col-xs-6
-
-        is_sale:
-            label: indikator.sellproducts::lang.form.is_sale
-            required: true
-            type: radio
-            options:
-                1: indikator.sellproducts::lang.form.yes
-                0: indikator.sellproducts::lang.form.no
-            default: 0
-            span: storm
-            cssClass: col-xs-6
-
-        sale_price:
-            label: indikator.sellproducts::lang.form.sale_price
-            trigger:
-                action: show
-                field: is_sale
-                condition: value[1]
-            span: storm
-            cssClass: col-xs-12
-
-        sale_start:
-            label: indikator.sellproducts::lang.form.sale_start
-            type: datepicker
-            trigger:
-                action: show
-                field: is_sale
-                condition: value[1]
-            mode: datetime
-            span: storm
-            cssClass: col-xs-12
-
-        sale_end:
-            label: indikator.sellproducts::lang.form.sale_end
-            type: datepicker
-            trigger:
-                action: show
-                field: is_sale
-                condition: value[1]
-            mode: datetime
-            span: storm
-            cssClass: col-xs-12
 
         status:
             label: indikator.sellproducts::lang.form.status

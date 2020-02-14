@@ -31,6 +31,12 @@ columns:
         searchable: true
         invisible: true
 
+    products:
+        label: indikator.sellproducts::lang.form.products
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/category/_products.htm
+
     status:
         label: indikator.sellproducts::lang.form.status
         sortable: false

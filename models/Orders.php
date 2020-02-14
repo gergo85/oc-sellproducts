@@ -12,7 +12,7 @@ class Orders extends Model
         'first_name' => 'required',
         'last_name'  => 'required',
         'email'      => 'required',
-        'status'     => 'required|between:1,3|numeric'
+        'status'     => 'required|between:3,6|numeric'
     ];
 
     protected $jsonable = [

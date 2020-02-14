@@ -136,7 +136,8 @@ class Plugin extends PluginBase
                     2 => 'inactive',
                     3 => 'pending',
                     4 => 'paid',
-                    5 => 'closed'
+                    5 => 'closed',
+                    6 => 'cancelled'
                 ];
 
                 $class = [
@@ -144,7 +145,8 @@ class Plugin extends PluginBase
                     2 => 'text-danger',
                     3 => 'text-warning',
                     4 => 'text-info',
-                    5 => 'text-success'
+                    5 => 'text-success',
+                    6 => 'text-danger'
                 ];
 
                 return '<span class="oc-icon-circle '.$class[$value].'">'.Lang::get('indikator.sellproducts::lang.form.status_'.$text[$value]).'</span>';

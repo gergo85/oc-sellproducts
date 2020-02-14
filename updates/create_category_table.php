@@ -13,7 +13,6 @@ class CreateCategoryTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->string('slug', 100);
-            $table->text('summary')->nullable();
             $table->longtext('content')->nullable();
             $table->text('payment')->nullable();
             $table->string('image', 191)->nullable();

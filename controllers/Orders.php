@@ -78,18 +78,18 @@ class Orders extends Controller
         return $this->listRefresh();
     }
 
-    public function onRemove()
+    public function onCancelled()
     {
         if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
             foreach ($checkedIds as $itemId) {
-                if (!$item = Item::where('status', 3)->whereId($itemId)) {
+                if (!$item = Item::where('status', '!=', 6)->whereId($itemId)) {
                     continue;
                 }
 
-                $item->delete();
+                $item->update(['status' => 6]);
             }
 
-            Flash::success(Lang::get('indikator.sellproducts::lang.flash.remove'));
+            Flash::success(Lang::get('indikator.sellproducts::lang.flash.cancelled'));
         }
 
         return $this->listRefresh();

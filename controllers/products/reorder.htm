@@ -1,0 +1,16 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('indikator/sellproducts/products') ?>"><?= e(trans('indikator.sellproducts::lang.menu.products')) ?></a></li>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<style type="text/css">
+    .control-treelist li > div.record > span {
+        font-size: 13px;
+    }
+</style>
+
+<div style="margin-left:20px;">
+    <?= $this->reorderRender() ?>
+</div>

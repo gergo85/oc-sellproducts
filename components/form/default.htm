@@ -2,15 +2,15 @@
 <p>{{ products }}</p>
 {% else %}
 <style type="text/css">
-#sellproducts-form .price_sale {
-    color: #AA0606;
-}
-#sellproducts-form .price_old {
-    text-decoration: line-through;
-}
-#sellproducts-form .product-quantity {
-    border: 0;
-}
+    #sellproducts-form .price_sale {
+        color: #AA0606;
+    }
+    #sellproducts-form .price_old {
+        text-decoration: line-through;
+    }
+    #sellproducts-form .product-quantity {
+        border: 0;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -77,9 +77,9 @@
                 <input type="hidden" name="product[]" value="{{ product.id }}">
             </div>
             <div class="col-md-4">
-                {% if product.price_sale %}<span class="price_sale">{{ product.price_sale }}</span> <span class="price_old">{{ product.price }}</span> {% else %}<span class="price_normal">{{ product.price }}</span>{% endif %} {{ category.currency }}
+                {% if product.sale_price %}<span class="sale_price">{{ product.sale_price }}</span> <span class="price_old">{{ product.price }}</span> {% else %}<span class="price_normal">{{ product.price }}</span>{% endif %} {{ category.currency }}
                 &nbsp;x&nbsp;
-                <input type="number" name="quantity[]" value="0" min="0" max="99" class="product-quantity" data-product="{{ product.id }}" data-price="{% if product.price_sale %}{{ product.price_sale }}{% else %}{{ product.price }}{% endif %}" style="width:35px"> {{ category.unit }}
+                <input type="number" name="quantity[]" value="0" min="0" max="{{ product.quantity }}" class="product-quantity" data-product="{{ product.id }}" data-price="{% if product.sale_price %}{{ product.sale_price }}{% else %}{{ product.price }}{% endif %}" style="width:35px"> {{ category.unit }}
             </div>
             <div class="col-md-3 text-right">
                 <span id="subtotal-{{ product.id }}">0</span> {{ category.currency }}

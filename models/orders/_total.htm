@@ -1,0 +1,3 @@
+<?php
+
+echo number_format($record->total, 0, '', ' ').' '.Indikator\SellProducts\Models\Category::whereId($record->category)->value('currency');

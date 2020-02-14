@@ -1,0 +1,12 @@
+# ===================================
+#  Reorder Behavior Config
+# ===================================
+
+title: indikator.sellproducts::lang.button.reorder
+
+nameFrom: name
+
+modelClass: Indikator\SellProducts\Models\Products
+
+toolbar:
+    buttons: reorder_toolbar

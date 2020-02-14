@@ -27,6 +27,8 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_address', 100)->nullable();
             $table->string('comment', 191)->nullable();
             $table->string('payment', 20)->nullable();
+            $table->string('category', 3)->default(0);
+            $table->integer('total');
             $table->string('status', 1)->default(1);
             $table->timestamps();
         });

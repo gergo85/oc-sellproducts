@@ -93,8 +93,8 @@ class Form extends ComponentBase
                 $checked = ($payment == '') ? ' checked' : '';
 
                 $payment .= '<input type="radio" name="payment" value="'.$item['payment_type'].'" data-redirect="'.Settings::get($item['payment_type'].'_redirect', false).'" class="sellproducts_payment"'.$checked.'> '.Settings::get($item['payment_type'].'_name', false);
-                if ($item['payment_text'] != '') {
-                    $payment .= ' ('.$item['payment_text'].')';
+                if ($item['payment_comment'] != '') {
+                    $payment .= ' ('.$item['payment_comment'].')';
                 }
                 $payment .= '<br>';
             }
@@ -173,22 +173,40 @@ class Form extends ComponentBase
             throw new ValidationException($validation);
         }
 
-        // Products
         $products = [];
+        $total    = 0;
+
+        // Products
         foreach ($data['quantity'] as $key => $value) {
-            if ($value > 0) {
+            if ($value > 0 && Products::where(['id' => $data['product'][$key], 'status' => 1])->count() == 1) {
+                // Product
                 $product = Products::whereId($data['product'][$key])->first();
                 if ($product->status == 1) {
+                    // Get price 
                     $price = ($product->sale_price > 0) ? $product->sale_price : $product->price;
 
+                    // Check quantity
+                    if ($value > $product->quantity) {
+                        $value = $product->quantity;
+                    }
+
+                    // Add product
                     $products[] = [
                         'product'  => $data['product'][$key],
                         'quantity' => $value,
                         'price'    => $price * $value
                     ];
 
-                    Products::whereId($data['product'][$key])->update(['orders' => $product->orders + $value]);
+                    // Increase total
+                    $total += $price * $value;
 
+                    // Change data
+                    Products::whereId($data['product'][$key])->update([
+                        'quantity' => $product->quantity - $value,
+                        'orders'   => $product->orders + $value
+                    ]);
+
+                    // Get category
                     if (!isset($category) && Category::where(['id' => $product->category, 'status' => 1])->count() == 1) {
                         $category = Category::where(['id' => $product->category, 'status' => 1])->first();
                     }
@@ -239,6 +257,8 @@ class Form extends ComponentBase
             'shipping_address' => $data['shipping_address'],
             'comment'          => $data['comment'],
             'payment'          => $data['payment'],
+            'total'            => $total,
+            'category'         => $category->id,
             'status'           => 3,
             'created_at'       => date('Y-m-d H:i:s'),
             'updated_at'       => date('Y-m-d H:i:s')
@@ -299,16 +319,6 @@ class Form extends ComponentBase
             $shippingAddress->Street3  = '';
             $shippingAddress->FullName = $data['first_name'].' '.$data['last_name'];
 
-            // Locale and currency
-            if (isset($category)) {
-                $locale   = $category->locale;
-                $currency = $category->currency;
-            }
-            else {
-                $locale   = Settings::get('barion_locale', false);
-                $currency = Settings::get('barion_currency', false);
-            }
-
             // Create the payment request
             $psr = new PreparePaymentRequestModel();
             $psr->GuestCheckout    = true;
@@ -316,8 +326,8 @@ class Form extends ComponentBase
             $psr->FundingSources   = ['All'];
             $psr->PaymentRequestId = 'PAYMENT-'.time();
             $psr->PayerHint        = $data['email'];
-            $psr->Locale           = $locale;
-            $psr->Currency         = $currency;
+            $psr->Locale           = $category->locale;
+            $psr->Currency         = $category->currency;
             $psr->OrderNumber      = 'ORDER-'.Orders::count();
             $psr->ShippingAddress  = $shippingAddress;
             $psr->RedirectUrl      = Config::get('app.url').Settings::get('barion_redirect', false);
@@ -329,10 +339,6 @@ class Form extends ComponentBase
 
             // Request is successful
             if ($myPayment->RequestSuccessful === true) {
-
-                // Set status to Paid
-                Orders::whereId($orderId)->update(['status' => 4]);
-
                 // URL type
                 $redirectUrl = ($envType == 'prod') ? BARION_WEB_URL_PROD : BARION_WEB_URL_TEST;
 

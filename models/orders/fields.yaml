@@ -114,13 +114,11 @@ tabs:
                         span: storm
                         cssClass: col-sm-12 col-md-6
                     price:
-                        label: indikator.sellproducts::lang.form.price
-                        type: number
+                        label: indikator.sellproducts::lang.form.price_total
                         span: storm
                         cssClass: col-xs-7 col-sm-6 col-md-3
                     quantity:
                         label: indikator.sellproducts::lang.form.quantity
-                        type: number
                         span: storm
                         cssClass: col-xs-5 col-sm-6 col-md-3
             span: full
@@ -130,6 +128,11 @@ tabs:
 secondaryTabs:
 
     fields:
+
+        total:
+            label: indikator.sellproducts::lang.form.price_total
+            span: storm
+            cssClass: col-xs-12
 
         comment:
             label: indikator.sellproducts::lang.form.comment
@@ -146,6 +149,7 @@ secondaryTabs:
                 3: indikator.sellproducts::lang.form.status_pending
                 4: indikator.sellproducts::lang.form.status_paid
                 5: indikator.sellproducts::lang.form.status_closed
+                6: indikator.sellproducts::lang.form.status_cancelled
             default: 3
             span: storm
             cssClass: col-xs-6

@@ -147,7 +147,6 @@ return [
             'billing' => 'Show billing data',
             'shipping' => 'Show shipping data',
             'comment' => 'Show comment field',
-            'barion' => 'Show Barion payment logos',
             'warning' => 'There are no products to display.',
             'personal' => 'Personal details',
             'items' => 'Items',
@@ -157,7 +156,9 @@ return [
         ],
         'logo' => [
             'name' => 'Payment logo',
-            'description' => 'Display the logo of payment.'
+            'description' => 'Display the logo of payment.',
+            'barion' => 'Show Barion payment logo',
+            'barion_size' => 'Width of image'
         ]
     ],
     'permission' => [

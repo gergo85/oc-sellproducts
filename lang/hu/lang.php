@@ -147,7 +147,6 @@ return [
             'billing' => 'Számlázási adatok mutatása',
             'shipping' => 'Szállítási adatok mutatása',
             'comment' => 'Megjegyzés mező mutatása',
-            'barion' => 'Barion logók megjelenítése',
             'warning' => 'Nincs megjeleníthető termék.',
             'personal' => 'Személyes adatok',
             'items' => 'Tételek',
@@ -157,7 +156,9 @@ return [
         ],
         'logo' => [
             'name' => 'Fizetési logó',
-            'description' => 'Megjeleníti a fizetéshez tartozó logót.'
+            'description' => 'Megjeleníti a fizetéshez tartozó logót.',
+            'barion' => 'Barion logó megjelenítése',
+            'barion_size' => 'A kép szélessége'
         ]
     ],
     'permission' => [

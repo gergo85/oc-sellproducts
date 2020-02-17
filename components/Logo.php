@@ -16,12 +16,12 @@ class Logo extends ComponentBase
     {
         return [
             'barion' => [
-                'title'   => 'indikator.sellproducts::lang.component.barion',
+                'title'   => 'indikator.sellproducts::lang.component.logo.barion',
                 'default' => true,
                 'type'    => 'checkbox'
             ],
             'barion_size' => [
-                'title'   => 'indikator.sellproducts::lang.component.barion_size',
+                'title'   => 'indikator.sellproducts::lang.component.logo.barion_size',
                 'default' => '400',
                 'type'    => 'dropdown',
                 'options' => [

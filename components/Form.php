@@ -220,24 +220,16 @@ class Form extends ComponentBase
         }
 
         // Check data
-        if (!isset($data['user']) || !is_numeric($data['user'])) {
-            $data['user'] = 0;
-        }
-        if (!isset($data['name'])) {
-            $data['name'] = '';
-        }
-        if (!isset($data['city'])) {
-            $data['city'] = '';
-        }
-        if (!isset($data['zipcode'])) {
-            $data['zipcode'] = '';
-        }
-        if (!isset($data['address'])) {
-            $data['address'] = '';
-        }
-        if (!isset($data['comment'])) {
-            $data['comment'] = '';
-        }
+        if (!isset($data['user']))             $data['user'] = 0;
+        if (!isset($data['billing_name']))     $data['billing_name'] = '';
+        if (!isset($data['billing_zipcode']))  $data['billing_zipcode'] = '';
+        if (!isset($data['billing_city']))     $data['billing_city'] = '';
+        if (!isset($data['billing_address']))  $data['billing_address'] = '';
+        if (!isset($data['shipping_name']))    $data['shipping_name'] = '';
+        if (!isset($data['shipping_zipcode'])) $data['shipping_zipcode'] = '';
+        if (!isset($data['shipping_city']))    $data['shipping_city'] = '';
+        if (!isset($data['shipping_address'])) $data['shipping_address'] = '';
+        if (!isset($data['comment']))          $data['comment'] = '';
 
         // Add to database
         $orderId = Orders::insertGetId([
@@ -312,9 +304,9 @@ class Form extends ComponentBase
             $shippingAddress = new ShippingAddressModel();
             $shippingAddress->Country  = 'HU';
             $shippingAddress->Region   = null;
-            $shippingAddress->City     = $data['city'];
-            $shippingAddress->Zip      = $data['zipcode'];
-            $shippingAddress->Street   = $data['address'];
+            $shippingAddress->City     = $data['shipping_city'];
+            $shippingAddress->Zip      = $data['shipping_zipcode'];
+            $shippingAddress->Street   = $data['shipping_address'];
             $shippingAddress->Street2  = '';
             $shippingAddress->Street3  = '';
             $shippingAddress->FullName = $data['first_name'].' '.$data['last_name'];

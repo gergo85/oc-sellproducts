@@ -15,28 +15,28 @@ class Settings extends Model
 
     public function getBarionRedirectOptions()
     {
-        return $this->redirectOptions();
+        return $this->pageList();
     }
 
     public function getBarionCallbackOptions()
     {
-        return $this->redirectOptions();
+        return $this->pageList();
     }
 
     public function getTransferRedirectOptions()
     {
-        return $this->redirectOptions();
+        return $this->pageList();
     }
 
     public function getCashRedirectOptions()
     {
-        return $this->redirectOptions();
+        return $this->pageList();
     }
 
-    public function redirectOptions()
+    public function pageList()
     {
         $result = [];
-        $pages = Page::sortBy('baseFileName')->all();
+        $pages  = Page::sortBy('baseFileName')->all();
 
         foreach ($pages as $page) {
             $result[$page->url] = $page->title;

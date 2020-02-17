@@ -14,7 +14,7 @@ class CreateCategoryTable extends Migration
             $table->string('name', 100);
             $table->string('slug', 100);
             $table->longtext('content')->nullable();
-            $table->text('payment')->nullable();
+            $table->text('payment');
             $table->string('image', 191)->nullable();
             $table->string('locale', 5)->default('hu-HU');
             $table->string('currency', 3)->default('HUF');

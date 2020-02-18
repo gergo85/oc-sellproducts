@@ -92,6 +92,7 @@ return [
         'warning_orders' => 'Create a new product &raquo;',
         'warning_products' => 'Create a new category &raquo;',
         'orders' => 'Order|Orders',
+        'received' => 'Received',
         'created_at' => 'Created at',
         'updated_at' => 'Updated at'
     ],
@@ -152,7 +153,7 @@ return [
             'items' => 'Items',
             'total' => 'Total',
             'payment' => 'Payment type',
-            'submit' => 'Submit'
+            'submit' => 'Continue to checkout'
         ],
         'logo' => [
             'name' => 'Payment logo',

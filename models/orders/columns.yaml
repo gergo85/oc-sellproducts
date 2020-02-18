@@ -7,6 +7,18 @@ columns:
     id:
         label: indikator.sellproducts::lang.form.id
 
+    total:
+        label: indikator.sellproducts::lang.form.price_total
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/orders/_total.htm
+
+    payment:
+        label: indikator.sellproducts::lang.form.payment
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/orders/_payment.htm
+
     first_name:
         label: indikator.sellproducts::lang.form.first_name
         searchable: true
@@ -30,22 +42,15 @@ columns:
         invisible: true
         sortable: false
 
-    total:
-        label: indikator.sellproducts::lang.form.price_total
-        sortable: false
-        type: partial
-        path: ~/plugins/indikator/sellproducts/models/orders/_total.htm
-
-    payment:
-        label: indikator.sellproducts::lang.form.payment
-        sortable: false
-        type: partial
-        path: ~/plugins/indikator/sellproducts/models/orders/_payment.htm
-
     status:
         label: indikator.sellproducts::lang.form.status
         sortable: false
         type: sellproducts_status
+
+    created_at:
+        label: indikator.barion::lang.list.received
+        sortable: false
+        type: timesince
 
     created_at:
         label: indikator.sellproducts::lang.list.created_at
@@ -56,4 +61,5 @@ columns:
     updated_at:
         label: indikator.sellproducts::lang.list.updated_at
         searchable: true
+        invisible: true
         type: datetime

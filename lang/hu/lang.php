@@ -92,6 +92,7 @@ return [
         'warning_orders' => 'Hozzon létre egy terméket &raquo;',
         'warning_products' => 'Hozzon létre egy kategóriát &raquo;',
         'orders' => 'Rendelés|Rendelés',
+        'received' => 'Beérkezett',
         'created_at' => 'Létrehozva',
         'updated_at' => 'Módosítva'
     ],
@@ -152,7 +153,7 @@ return [
             'items' => 'Tételek',
             'total' => 'Összesen',
             'payment' => 'Fizetési mód',
-            'submit' => 'Rendelés'
+            'submit' => 'Tovább a fizetéshez'
         ],
         'logo' => [
             'name' => 'Fizetési logó',

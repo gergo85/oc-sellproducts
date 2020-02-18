@@ -271,7 +271,7 @@ class Form extends ComponentBase
 
             // Create the transaction
             $trans = new PaymentTransactionModel();
-            $trans->POSTransactionId = 'TRANS-'.time();
+            $trans->POSTransactionId = 'TRANS-'.$orderId;
             $trans->Payee   = Settings::get('barion_email', false);
             $trans->Total   = 0;
             $trans->Comment = $data['comment'];
@@ -304,23 +304,23 @@ class Form extends ComponentBase
             $shippingAddress = new ShippingAddressModel();
             $shippingAddress->Country  = 'HU';
             $shippingAddress->Region   = null;
-            $shippingAddress->City     = $data['shipping_city'];
+            $shippingAddress->FullName = $data['shipping_name'];
             $shippingAddress->Zip      = $data['shipping_zipcode'];
+            $shippingAddress->City     = $data['shipping_city'];
             $shippingAddress->Street   = $data['shipping_address'];
             $shippingAddress->Street2  = '';
             $shippingAddress->Street3  = '';
-            $shippingAddress->FullName = $data['first_name'].' '.$data['last_name'];
 
             // Create the payment request
             $psr = new PreparePaymentRequestModel();
             $psr->GuestCheckout    = true;
             $psr->PaymentType      = Settings::get('barion_type', false);
             $psr->FundingSources   = ['All'];
-            $psr->PaymentRequestId = 'PAYMENT-'.time();
+            $psr->PaymentRequestId = 'PAYMENT-'.$orderId;
             $psr->PayerHint        = $data['email'];
             $psr->Locale           = $category->locale;
             $psr->Currency         = $category->currency;
-            $psr->OrderNumber      = 'ORDER-'.Orders::count();
+            $psr->OrderNumber      = 'ORDER-'.$orderId;
             $psr->ShippingAddress  = $shippingAddress;
             $psr->RedirectUrl      = Config::get('app.url').Settings::get('barion_redirect', false);
             $psr->CallbackUrl      = Config::get('app.url').Settings::get('barion_callback', false);

@@ -2,6 +2,12 @@
 <p>{{ products }}</p>
 {% else %}
 <style type="text/css">
+    label[for="no-shipping"],
+    label[for="no-billing"] {
+        cursor: pointer;
+        font-size: 15px;
+        padding-left: 10px;
+    }
     .price_sale {
         color: #AA0606;
     }
@@ -16,7 +22,7 @@
     <div class="row">
         <form class="sellproducts" data-request="onSellProducts">
             <div class="col-md-12" style="margin: 20px 0 10px 0;">
-                <strong>{{ form.personal }}</strong>
+                <h4>{{ form.personal }}</h4>
             </div>
             <div class="form-group col-md-6">
                 <input type="text" name="first_name" placeholder="{{ form.first_name }}" class="form-control" required>
@@ -30,44 +36,46 @@
             <div class="form-group col-md-6">
                 <input type="text" name="phone" placeholder="{{ form.phone }}" class="form-control">
             </div>
-            {% if billing %}
+            {% if shipping %}
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12" style="margin: 10px 0;">
-                        <strong>{{ form.billing }}</strong>
+                    <div class="col-md-12" style="margin: 6px 0 10px 0;">
+                        <h4>{{ form.shipping }}</h4>
+                        <input type="checkbox" name="no_shipping" id="no-shipping"> <label for="no-shipping">{{ form.no_shipping }}</label>
                     </div>
-                    <div class="form-group col-md-12">
-                        <input type="text" name="billing_name" placeholder="{{ form.name }}" class="form-control" required>
+                    <div class="form-group shipping col-md-12">
+                        <input type="text" name="shipping_name" placeholder="{{ form.name }}" class="form-control" required>
                     </div>
-                    <div class="form-group col-xs-4">
-                        <input type="text" name="billing_zipcode" placeholder="{{ form.zipcode }}" class="form-control" required>
+                    <div class="form-group shipping col-xs-4">
+                        <input type="text" name="shipping_zipcode" placeholder="{{ form.zipcode }}" class="form-control only-number" required>
                     </div>
-                    <div class="form-group col-xs-8">
-                        <input type="text" name="billing_city" placeholder="{{ form.city }}" class="form-control" required>
+                    <div class="form-group shipping col-xs-8">
+                        <input type="text" name="shipping_city" placeholder="{{ form.city }}" class="form-control" required>
                     </div>
-                    <div class="form-group col-md-12">
-                        <input type="text" name="billing_address" placeholder="{{ form.address }}" class="form-control" required>
+                    <div class="form-group shipping col-md-12">
+                        <input type="text" name="shipping_address" placeholder="{{ form.address }}" class="form-control" required>
                     </div>
                 </div>
             </div>
             {% endif %}
-            {% if shipping %}
+            {% if billing %}
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12" style="margin: 10px 0;">
-                        <strong>{{ form.shipping }}</strong>
+                    <div class="col-md-12" style="margin: 6px 0 10px 0;">
+                        <h4>{{ form.billing }}</h4>
+                        <input type="checkbox" name="no_billing" id="no-billing"> <label for="no-billing">{{ form.no_billing }}</label>
                     </div>
-                    <div class="form-group col-md-12">
-                        <input type="text" name="shipping_name" placeholder="{{ form.name }}" class="form-control" required>
+                    <div class="form-group billing col-md-12">
+                        <input type="text" name="billing_name" placeholder="{{ form.name }}" class="form-control" required>
                     </div>
-                    <div class="form-group col-xs-4">
-                        <input type="text" name="shipping_zipcode" placeholder="{{ form.zipcode }}" class="form-control" required>
+                    <div class="form-group billing col-xs-4">
+                        <input type="text" name="billing_zipcode" placeholder="{{ form.zipcode }}" class="form-control only-number" required>
                     </div>
-                    <div class="form-group col-xs-8">
-                        <input type="text" name="shipping_city" placeholder="{{ form.city }}" class="form-control" required>
+                    <div class="form-group billing col-xs-8">
+                        <input type="text" name="billing_city" placeholder="{{ form.city }}" class="form-control" required>
                     </div>
-                    <div class="form-group col-md-12">
-                        <input type="text" name="shipping_address" placeholder="{{ form.address }}" class="form-control" required>
+                    <div class="form-group billing col-md-12">
+                        <input type="text" name="billing_address" placeholder="{{ form.address }}" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -78,7 +86,7 @@
             </div>
             {% endif %}
             <div class="col-md-12" style="margin: 24px 0 4px 0;">
-                <strong>{{ form.items }}</strong>
+                <h4>{{ form.items }}</h4>
             </div>
             <input type="hidden" name="category" value="{{ category }}">
             {% for product in products %}
@@ -111,7 +119,7 @@
             <br>
             <div class="form-group col-md-12">
                 {% if payment %}
-                <strong>{{ form.payment }}</strong><br>
+                <h4>{{ form.payment }}</h4>
                 {{ payment|raw }}<br>
                 {% endif %}
                 <input type="submit" value="{{ form.submit }}" class="btn btn-primary">
@@ -122,6 +130,29 @@
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide shipping fields
+    $('#no-shipping').on('click', function() {
+        if ($(this).prop('checked') == true) {
+        	$('.shipping input').removeAttr('required');
+        	$('.shipping').hide();
+        }
+        else if($(this).prop('checked') == false) {
+        	$('.shipping').show();
+            $('.shipping input').attr('required', true);
+        }
+    });
+    // Show/hide billing fields
+    $('#no-billing').on('click', function() {
+        if ($(this).prop('checked') == true) {
+        	$('.billing input').removeAttr('required');
+        	$('.billing').hide();
+        }
+        else if($(this).prop('checked') == false) {
+        	$('.billing').show();
+            $('.billing input').attr('required', true);
+        }
+    });
+    // Quantity calculator
     $('.product-quantity').change(function() {
         var quantity = 0;
         var total = 0;
@@ -138,6 +169,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         $('#sellproducts-quantity').html(quantity);
         $('#sellproducts-total').html(total);
+    });
+    // Check number fields
+    $('.only-number').on('keypress', function() {
+        var keycode = event.keyCode;
+        if (keycode > 48 && keycode < 57) return true;
+        return false;
     });
 });
 </script>

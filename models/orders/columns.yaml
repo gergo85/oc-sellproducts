@@ -19,13 +19,21 @@ columns:
         type: partial
         path: ~/plugins/indikator/sellproducts/models/orders/_payment.htm
 
+    full_name:
+        label: indikator.sellproducts::lang.form.full_name
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/orders/_fullname.htm
+
     first_name:
         label: indikator.sellproducts::lang.form.first_name
         searchable: true
+        invisible: true
 
     last_name:
         label: indikator.sellproducts::lang.form.last_name
         searchable: true
+        invisible: true
 
     email:
         label: indikator.sellproducts::lang.form.email

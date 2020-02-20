@@ -15,25 +15,25 @@ class Settings extends Model
 
     public function getBarionRedirectOptions()
     {
-        return $this->pageList();
+        return $this->pageList(false);
     }
 
     public function getBarionCallbackOptions()
     {
-        return $this->pageList();
+        return $this->pageList(true);
     }
 
     public function getTransferRedirectOptions()
     {
-        return $this->pageList();
+        return $this->pageList(false);
     }
 
     public function getCashRedirectOptions()
     {
-        return $this->pageList();
+        return $this->pageList(false);
     }
 
-    public function pageList()
+    public function pageList($none)
     {
         $result = [];
         $pages  = Page::sortBy('baseFileName')->all();
@@ -56,6 +56,12 @@ class Settings extends Model
         }
 
         natsort($result);
+
+        if ($none) {
+            $result = array_reverse($result);
+            $result[''] = 'indikator.sellproducts::lang.settings.none';
+            $result = array_reverse($result);
+        }
 
         return $result;
     }

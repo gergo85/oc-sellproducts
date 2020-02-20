@@ -105,23 +105,25 @@ class Form extends ComponentBase
 
         // Translate form
         $this->page['form'] = [
-            'personal'   => Lang::get('indikator.sellproducts::lang.component.form.personal'),
-            'first_name' => Lang::get('indikator.sellproducts::lang.form.first_name'),
-            'last_name'  => Lang::get('indikator.sellproducts::lang.form.last_name'),
-            'email'      => Lang::get('indikator.sellproducts::lang.form.email'),
-            'phone'      => Lang::get('indikator.sellproducts::lang.form.phone'),
-            'billing'    => Lang::get('indikator.sellproducts::lang.form.billing'),
-            'shipping'   => Lang::get('indikator.sellproducts::lang.form.shipping'),
-            'name'       => Lang::get('indikator.sellproducts::lang.form.name'),
-            'city'       => Lang::get('indikator.sellproducts::lang.form.city'),
-            'zipcode'    => Lang::get('indikator.sellproducts::lang.form.zipcode'),
-            'address'    => Lang::get('indikator.sellproducts::lang.form.address'),
-            'comment'    => Lang::get('indikator.sellproducts::lang.form.comment'),
-            'unit'       => Lang::get('indikator.sellproducts::lang.form.unit_piece'),
-            'items'      => Lang::get('indikator.sellproducts::lang.component.form.items'),
-            'total'      => Lang::get('indikator.sellproducts::lang.component.form.total'),
-            'payment'    => Lang::get('indikator.sellproducts::lang.component.form.payment'),
-            'submit'     => Lang::get('indikator.sellproducts::lang.component.form.submit')
+            'personal'    => Lang::get('indikator.sellproducts::lang.component.form.personal'),
+            'first_name'  => Lang::get('indikator.sellproducts::lang.form.first_name'),
+            'last_name'   => Lang::get('indikator.sellproducts::lang.form.last_name'),
+            'email'       => Lang::get('indikator.sellproducts::lang.form.email'),
+            'phone'       => Lang::get('indikator.sellproducts::lang.form.phone'),
+            'billing'     => Lang::get('indikator.sellproducts::lang.form.billing'),
+            'no_billing'  => Lang::get('indikator.sellproducts::lang.component.form.no_billing'),
+            'shipping'    => Lang::get('indikator.sellproducts::lang.form.shipping'),
+            'no_shipping' => Lang::get('indikator.sellproducts::lang.component.form.no_shipping'),
+            'name'        => Lang::get('indikator.sellproducts::lang.form.name'),
+            'city'        => Lang::get('indikator.sellproducts::lang.form.city'),
+            'zipcode'     => Lang::get('indikator.sellproducts::lang.form.zipcode'),
+            'address'     => Lang::get('indikator.sellproducts::lang.form.address'),
+            'comment'     => Lang::get('indikator.sellproducts::lang.form.comment'),
+            'unit'        => Lang::get('indikator.sellproducts::lang.form.unit_piece'),
+            'items'       => Lang::get('indikator.sellproducts::lang.component.form.items'),
+            'total'       => Lang::get('indikator.sellproducts::lang.component.form.total'),
+            'payment'     => Lang::get('indikator.sellproducts::lang.component.form.payment'),
+            'submit'      => Lang::get('indikator.sellproducts::lang.component.form.submit')
         ];
 
         // Display options
@@ -140,11 +142,11 @@ class Form extends ComponentBase
         $rules = [
             'first_name' => 'required',
             'last_name'  => 'required',
-            'email'      => 'required'
+            'email'      => 'required|email'
         ];
 
         // Billing data
-        if ($this->property('billing')) {
+        if ($this->property('billing') && !isset($data['no_billing'])) {
             $more_rules = [
                 'billing_name'    => 'required',
                 'billing_zipcode' => 'required',
@@ -156,7 +158,7 @@ class Form extends ComponentBase
         }
 
         // Shipping data
-        if ($this->property('shipping')) {
+        if ($this->property('shipping') && !isset($data['no_shipping'])) {
             $more_rules = [
                 'shipping_name'    => 'required',
                 'shipping_zipcode' => 'required',
@@ -230,6 +232,19 @@ class Form extends ComponentBase
         if (!isset($data['shipping_city']))    $data['shipping_city'] = '';
         if (!isset($data['shipping_address'])) $data['shipping_address'] = '';
         if (!isset($data['comment']))          $data['comment'] = '';
+
+        // Shipping data
+        if ($this->property('shipping') && isset($data['no_shipping'])) {
+            $data['shipping_name'] = $data['shipping_zipcode'] = $data['shipping_city'] = $data['shipping_address'] = '';
+        }
+    
+        // Billing data
+        if ($this->property('billing') && isset($data['no_billing'])) {
+            $data['billing_name']    = $data['shipping_name'];
+            $data['billing_zipcode'] = $data['shipping_zipcode'];
+            $data['billing_city']    = $data['shipping_city'];
+            $data['billing_address'] = $data['shipping_address'];
+        }
 
         // Add to database
         $orderId = Orders::insertGetId([
@@ -311,6 +326,10 @@ class Form extends ComponentBase
             $shippingAddress->Street2  = '';
             $shippingAddress->Street3  = '';
 
+            // Calback URL
+            $callback = Settings::get('barion_callback', false);
+            $callback = ($callback != '') ? Config::get('app.url').$callback : null;
+
             // Create the payment request
             $psr = new PreparePaymentRequestModel();
             $psr->GuestCheckout    = true;
@@ -323,7 +342,7 @@ class Form extends ComponentBase
             $psr->OrderNumber      = 'ORDER-'.$orderId;
             $psr->ShippingAddress  = $shippingAddress;
             $psr->RedirectUrl      = Config::get('app.url').Settings::get('barion_redirect', false);
-            $psr->CallbackUrl      = Config::get('app.url').Settings::get('barion_callback', false);
+            $psr->CallbackUrl      = $callback;
             $psr->AddTransaction($trans);
 
             // Send the request

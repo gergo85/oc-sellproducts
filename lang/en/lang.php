@@ -99,7 +99,7 @@ return [
     ],
     'button' => [
         'activate' => 'Activate',
-        'deactivate' => 'Deactivate',
+        'inactivate' => 'Inactivate',
         'pending' => 'Pending',
         'active' => 'Active',
         'inactive' => 'Inactive',
@@ -110,7 +110,7 @@ return [
     ],
     'flash' => [
         'activate' => 'Successfully activated those items.',
-        'deactivate' => 'Successfully deactivated those items.',
+        'inactivate' => 'Successfully inactivated those items.',
         'pending' => 'Successfully pendind those orders.',
         'paid' => 'Successfully paid those orders.',
         'closed' => 'Successfully closed those orders.',

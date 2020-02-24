@@ -99,7 +99,7 @@ return [
     ],
     'button' => [
         'activate' => 'Aktiválás',
-        'deactivate' => 'Deaktiválás',
+        'inactivate' => 'Inaktiválás',
         'pending' => 'Folyamatban',
         'active' => 'Aktív',
         'inactive' => 'Inaktív',
@@ -110,7 +110,7 @@ return [
     ],
     'flash' => [
         'activate' => 'Az aktiválás sikeresen megtörtént.',
-        'deactivate' => 'A deaktiválás sikeresen megtörtént.',
+        'inactivate' => 'Az inaktiválás sikeresen megtörtént.',
         'pending' => 'A folyamatba rakás sikeresen megtörtént.',
         'paid' => 'A fizetés sikeresen megtörtént.',
         'closed' => 'A lezárás sikeresen megtörtént.',

@@ -54,7 +54,11 @@ class Category extends Controller
     {
         if ($this->isSelected()) {
             foreach (post('checked') as $itemId) {
-                if (!$item = Item::whereId($itemId) || Products::where('category', $itemId)->count() > 0) {
+                if (!$item = Item::whereId($itemId)) {
+                    continue;
+                }
+
+                if (Products::where('category', $itemId)->count() > 0) {
                     continue;
                 }
 

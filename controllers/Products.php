@@ -54,7 +54,11 @@ class Products extends Controller
     {
         if ($this->isSelected()) {
             foreach (post('checked') as $itemId) {
-                if (!$item = Item::whereId($itemId) || $item->value('orders') > 0) {
+                if (!$item = Item::whereId($itemId)) {
+                    continue;
+                }
+
+                if ($item->value('orders') > 0) {
                     continue;
                 }
 

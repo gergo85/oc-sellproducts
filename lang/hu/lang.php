@@ -61,6 +61,7 @@ return [
         'unit_piece' => 'darab',
         'quantity' => 'Mennyiség',
         'is_sale' => 'Leértékelt?',
+        'sale' => 'Akciós',
         'sale_price' => 'Akciós ár',
         'sale_start' => 'Akció kezdete',
         'sale_end' => 'Akció vége',

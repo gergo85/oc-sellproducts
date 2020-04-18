@@ -4,6 +4,17 @@
 
 scopes:
 
+    category:
+        label: indikator.paste::lang.form.category
+        modelClass: Indikator\SellProducts\Models\Category
+        conditions: category in (:filtered)
+        nameFrom: name
+
+    sale_price:
+        label: indikator.sellproducts::lang.form.sale
+        type: checkbox
+        conditions: sale_price != ''
+
     status_active:
         label: indikator.sellproducts::lang.form.status_active
         type: checkbox

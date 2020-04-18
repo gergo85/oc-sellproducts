@@ -61,6 +61,7 @@ return [
         'unit_piece' => 'piece',
         'quantity' => 'Quantity',
         'is_sale' => 'Is sale?',
+        'sale' => 'Sale',
         'sale_price' => 'Sale price',
         'sale_start' => 'Sale start',
         'sale_end' => 'Sale end',

@@ -3,6 +3,10 @@
 use System\Classes\PluginBase;
 use Backend;
 use Lang;
+use Indikator\SellProducts\Models\Orders;
+use Indikator\SellProducts\Models\Products;
+use Indikator\SellProducts\Controllers\Orders as OrdersControllers;
+use Indikator\SellProducts\Controllers\Products as ProductsControllers;
 
 class Plugin extends PluginBase
 {
@@ -152,5 +156,37 @@ class Plugin extends PluginBase
                 return '<span class="oc-icon-circle '.$class[$value].'">'.Lang::get('indikator.sellproducts::lang.form.status_'.$text[$value]).'</span>';
             }
         ];
+    }
+
+    public function boot()
+    {
+        OrdersControllers::extendListColumns(function($list, $model)
+        {
+            if (!$model instanceof Orders) {
+                return;
+            }
+
+            if (Orders::where('comment', '!=', '')->count() == 0) {
+                $list->removeColumn('comment');
+            }
+        });
+
+        ProductsControllers::extendListColumns(function($list, $model)
+        {
+            if (!$model instanceof Products) {
+                return;
+            }
+
+            if (Products::where('sale_price', '!=', '')->count() == 0) {
+                $list->removeColumn('sale_price');
+            }
+        });
+
+        ProductsControllers::extendListFilterScopes(function($filter)
+        {
+            if (Products::where('sale_price', '!=', '')->count() == 0) {
+                $filter->removeScope('sale_price');
+            }
+        });
     }
 }

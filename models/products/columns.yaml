@@ -34,6 +34,12 @@ columns:
         type: partial
         path: ~/plugins/indikator/sellproducts/models/products/_price.htm
 
+    sale_price:
+        label: indikator.sellproducts::lang.form.sale_price
+        sortable: false
+        type: partial
+        path: ~/plugins/indikator/sellproducts/models/products/_sale_price.htm
+
     quantity:
         label: indikator.sellproducts::lang.form.quantity
         searchable: true
